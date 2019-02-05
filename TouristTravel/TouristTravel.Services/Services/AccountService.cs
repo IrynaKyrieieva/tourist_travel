@@ -14,9 +14,7 @@ namespace TouristTravel.Services.Services
 
 		public string SignUp(string name)
 		{
-			var name = _accountRepository.SignUp(name);
-
-			return name;
+			return _accountRepository.SignUp(name);
 		}
 	}
 }
