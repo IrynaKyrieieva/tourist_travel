@@ -1,0 +1,27 @@
+.row {
+    background-image: linear-gradient(#ffffff, #e6e6e6);
+  }
+  
+  .logo {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 65px;
+  }
+  
+  .profile-icon {
+    height: 55px;
+    cursor: pointer;
+    padding-top: 5px;
+  }
+  
+  .nav {
+    padding-top: 10px;
+  }
+  
+  .ngbDropdown {
+    z-index: 1000;
+  }
+  
+  .login {
+    padding-top: 10px; 
+  }

@@ -1,0 +1,14 @@
+﻿using System.Data.Entity;
+using TouristTravel.Data.Entities;
+
+namespace TouristTravel.Data.Interfaces
+{
+	public interface IContext
+	{
+		DbSet<Account> Accounts { get; set; }
+
+		int SaveChanges();
+
+		DbSet<T> Set<T>() where T : class;
+	}
+}
