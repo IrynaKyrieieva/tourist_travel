@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +14,7 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +29,19 @@ import { FiltersComponent } from './components/filters/filters.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AccountService],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SignInComponent,
+    SignUpComponent
+  ]
 })
 export class AppModule { }
