@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.Services", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.Data", "TouristTravel.Data\TouristTravel.Data.csproj", "{7E0A4C39-D09C-42D6-91DD-93B59740CABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.WebApi", "TouristTravel.WebApi\TouristTravel.WebApi.csproj", "{C9342A79-5388-43D8-A239-A112484C7E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.WebApi", "TouristTravel.WebApi\TouristTravel.WebApi.csproj", "{83E98380-F6FC-45FC-ABFE-DE540918AE32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{7E0A4C39-D09C-42D6-91DD-93B59740CABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E0A4C39-D09C-42D6-91DD-93B59740CABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E0A4C39-D09C-42D6-91DD-93B59740CABB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9342A79-5388-43D8-A239-A112484C7E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9342A79-5388-43D8-A239-A112484C7E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9342A79-5388-43D8-A239-A112484C7E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9342A79-5388-43D8-A239-A112484C7E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

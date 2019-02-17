@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { AccountService } from '../../services/account.service';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-header',
@@ -16,5 +17,9 @@ export class HeaderComponent {
 
   private openSignInComponent(): void {
     this.modalService.open(SignInComponent);
+  }
+
+  private openSignUpComponent(): void {
+    this.modalService.open(SignUpComponent);
   }
 }

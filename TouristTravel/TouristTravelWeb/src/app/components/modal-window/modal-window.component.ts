@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,13 +6,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal-window.component.html',
   styleUrls: ['./modal-window.component.css']
 })
-export class ModalWindowComponent implements OnInit {
+export class ModalWindowComponent {
 
   @Input() title = 'title';
 
   constructor(private activeModal: NgbActiveModal) { }
-
-  ngOnInit() {
-  }
-
 }

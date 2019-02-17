@@ -15,24 +15,27 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace TouristTravel.WebApi.DependencyResolution {
 	using StructureMap.Configuration.DSL;
 	using StructureMap.Graph;
-
+	
 	public class DefaultRegistry : Registry {
-	#region Constructors and Destructors
+		#region Constructors and Destructors
 
-	public DefaultRegistry() {
-		Scan(
-		scan => {
-			scan.TheCallingAssembly();
-			scan.WithDefaultConventions();
-			scan.Assembly("TouristTravel.Data");
-			scan.Assembly("TouristTravel.Services");
-			scan.Assembly("TouristTravel.WebApi");
-		});
-	}
+		public DefaultRegistry() {
+			Scan(
+				scan => {
+					scan.TheCallingAssembly();
+					scan.WithDefaultConventions();
 
-	#endregion
+					scan.Assembly("TouristTravel.Data");
+					scan.Assembly("TouristTravel.Services");
+					scan.Assembly("TouristTravel.WebApi");
+				});
+		}
+
+		#endregion
 	}
 }

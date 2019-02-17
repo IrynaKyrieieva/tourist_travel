@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using TouristTravel.Services.Helper;
 
 namespace TouristTravel.WebApi
 {
@@ -6,7 +7,8 @@ namespace TouristTravel.WebApi
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+			AutoMapperConfig.Initialize();
+			GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
 }

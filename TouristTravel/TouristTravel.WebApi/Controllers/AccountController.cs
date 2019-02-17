@@ -1,10 +1,12 @@
 ﻿using System.Web.Http;
+using Microsoft.AspNetCore.Cors;
 using TouristTravel.Services.Interfaces;
+using TouristTravel.Services.Models;
 
 namespace TouristTravel.WebApi.Controllers
 {
 	public class AccountController : ApiController
-	{
+    {
 		private readonly IAccountService _accountService;
 
 		public AccountController(IAccountService accountService)
@@ -14,11 +16,20 @@ namespace TouristTravel.WebApi.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		public IHttpActionResult StrResult(string user)
+		public IHttpActionResult SignUp(AccountDto account)
 		{
-			var name= _accountService.SignUp(user);
+			var isSignUp = _accountService.SignUp(account);
 
-			return Ok(name);
+			return Ok(isSignUp);
+		}
+
+		[HttpGet]
+		[AllowAnonymous]
+		public IHttpActionResult Test()
+		{
+			var test = _accountService.Test();
+
+			return Ok(test);
 		}
 	}
 }
