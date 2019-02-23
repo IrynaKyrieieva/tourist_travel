@@ -1,4 +1,6 @@
-﻿namespace TouristTravel.Services.Models
+﻿using System;
+
+namespace TouristTravel.Services.Models
 {
 	public class AccountDto
 	{
@@ -9,7 +11,9 @@
 		public string Email { get; set; }
 		
 		public string Phone { get; set; }
-		
-		public string Password { get; set; }
+
+		public DateTime? DateOfSignUp { get; set; }
+
+		public DateTime? LastDateOfLogin { get; set; }
 	}
 }

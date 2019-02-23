@@ -1,13 +1,13 @@
-﻿using TouristTravel.Services.Models;
+﻿using System;
+using TouristTravel.Services.Models;
 
 namespace TouristTravel.Services.Interfaces
 {
 	public interface IAccountService
 	{
-		string Test();
-		bool SignUp(AccountDto accountDto);
+		bool SignUp(AccountSignUpDto accountDto);
 		bool UpdatePersonalData(AccountDto accountDto);
-		AccountDto ValidateAccount(string email, string password);
+		AccountDto SignIn(string email, string password, DateTime loginTime);
 		AccountDto GetAccount(int id);
 	}
 }

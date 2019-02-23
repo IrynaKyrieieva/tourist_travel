@@ -29,6 +29,32 @@ export class SignUpComponent {
     this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   }
 
+  signUp(): void {
+    if (this.signUpForm.valid) {
+      const user: AccountSignUp = {
+        name: this.signUpForm.value.userName,
+        phone: this.signUpForm.value.userPhone,
+        email: this.signUpForm.value.userEmail,
+        password: this.signUpForm.value.password,
+        dateOfSignUp: null,
+        lastDateOfLogin: null
+      };
+
+      this.accountService.signUp(user).subscribe(
+        (isSignUp) => {
+          if (isSignUp) {
+            this.cancel();
+          } else {
+            alert('User with this phone number or e-mail is already exsist');
+          }
+        }, (err) => {
+          alert(err);
+        });
+    } else {
+      alert('Form is invalid, check again please');
+    }
+  }
+
   cancel(): void {
     this.activeModal.close();
   }
@@ -56,7 +82,7 @@ export class SignUpComponent {
 
   private userPhoneValidator(control: FormControl): { [s: string]: boolean } {
     if (control.value.indexOf('_') !== -1) {
-      return { 'userName': true };
+      return { userName: true };
     }
     return null;
   }

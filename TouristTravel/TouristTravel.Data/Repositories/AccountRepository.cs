@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TouristTravel.Data.Entities;
 using TouristTravel.Data.Interfaces;
 
@@ -37,6 +38,24 @@ namespace TouristTravel.Data.Repositories
 			var isExist = Db.Accounts.Any(x => (x.Phone == account.Phone || x.Email == account.Email) && x.Id != id);
 
 			return isExist;
+		}
+
+		public bool UpdateLoginDate(DateTime loginDateTime, int id)
+		{
+			var account = GetById(id);
+			account.LastDateOfLogin = loginDateTime;
+			var isAccountUpdated = UpdatePersonalData(account);
+
+			return isAccountUpdated;
+		}
+
+		public bool SignUpByEmail(DateTime signUpDateTime, int id)
+		{
+			var account = GetById(id);
+			account.DateOfSignUp = signUpDateTime;
+			var isAccountSignIn = UpdatePersonalData(account);
+
+			return isAccountSignIn;
 		}
 	}
 }

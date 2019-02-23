@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from '../../services/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Account} from '../../models/account';
 
 import { SignUpComponent } from '../sign-up/sign-up.component';
 
@@ -20,9 +21,27 @@ export class SignInComponent {
               private modalService: NgbModal,
               private accountService: AccountService) {
     this.signInForm = new FormGroup({
-      phone: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
+  }
+
+  signIn(): void {
+    if (this.signInForm.valid) {
+      const user = {
+        email: this.signInForm.value.email,
+        password: this.signInForm.value.password
+      };
+
+      this.accountService.signIn(this.signInForm.value.email, this.signInForm.value.password).subscribe(
+        (account) => {
+          alert(account.name);
+        }, (err) => {
+          alert(err);
+        });
+    } else {
+      alert('Form is invalid, check again please');
+    }
   }
 
   private openSignUpComponent(): void {

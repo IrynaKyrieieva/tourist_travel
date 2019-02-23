@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ProxyHttpClientService } from './proxy-http-client.service';
 import { AccountSignUp } from '../models/account-sign-up';
@@ -16,12 +16,18 @@ export class AccountService {
   private readonly signInUrl = this.url + 'signIn';
   private readonly updateUrl = this.url + 'update';
   private readonly getAccountUrl = this.url + 'getAccount';
-  private readonly testUrl = this.url + 'test';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
               private readonly router: Router) { }
 
-  test(): Observable<any> {
-    return this.proxyHttpClientService.get(this.testUrl);
+  signUp(account: AccountSignUp): Observable<boolean> {
+    return this.proxyHttpClientService.postJson(this.signUpUrl, account);
+  }
+
+  signIn(email: string, password: string): Observable<Account> {
+    const params = new HttpParams().set('loginTime', new Date().toLocaleString('en-US'))
+                                .set('email', email)
+                                .set('password', password);
+    return this.proxyHttpClientService.get(this.signInUrl, params);
   }
 }

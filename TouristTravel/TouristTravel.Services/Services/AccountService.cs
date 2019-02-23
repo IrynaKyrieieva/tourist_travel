@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using AutoMapper;
@@ -18,14 +19,11 @@ namespace TouristTravel.Services.Services
 			_accountRepository = accountRepository;
 		}
 
-		public string Test()
+		public bool SignUp(AccountSignUpDto accountDto)
 		{
-			return "Hello Friend!";
-		}
-
-		public bool SignUp(AccountDto accountDto)
-		{
-			var account = Mapper.Map<AccountDto, Account>(accountDto);
+			var account = Mapper.Map<AccountSignUpDto, Account>(accountDto);
+			account.DateOfSignUp = null;
+			account.LastDateOfLogin = null;
 			if (_accountRepository.IsUserExist(account))
 			{
 				return false;
@@ -37,12 +35,21 @@ namespace TouristTravel.Services.Services
 			return true;
 		}
 
-		public AccountDto ValidateAccount(string email, string password)
+		public AccountDto SignIn(string email, string password, DateTime loginTime)
 		{
 			var account = Mapper.Map<Account, AccountDto>(
 				_accountRepository.GetUserByEmailAndPassword(email, GetPasswordHash(password)));
-			
-			return account;
+
+			if (account.DateOfSignUp != null)
+			{
+				account.LastDateOfLogin = loginTime;
+				if (UpdatePersonalData(account))
+				{
+					return account;
+				}
+			}
+
+			return new AccountDto();
 		}
 
 		public AccountDto GetAccount(int id)
@@ -54,13 +61,13 @@ namespace TouristTravel.Services.Services
 
 		public bool UpdatePersonalData(AccountDto accountDto)
 		{
-			var user = Mapper.Map<AccountDto, Account>(accountDto);
-			if (_accountRepository.CredentialsExist(user, accountDto.Id))
+			var account = Mapper.Map<AccountDto, Account>(accountDto);
+			if (_accountRepository.CredentialsExist(account, accountDto.Id))
 			{
 				return false;
 			}
 
-			_accountRepository.UpdatePersonalData(user);
+			_accountRepository.UpdatePersonalData(account);
 
 			return true;
 		}

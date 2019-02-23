@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Sale.cs" />
+    <Compile Include="Entities\Trip.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

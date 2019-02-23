@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    // tslint:disable-next-line:object-literal-key-quotes
     'charset': 'utf-8'
   })
 };
@@ -18,12 +19,13 @@ export class ProxyHttpClientService {
   constructor(private httpClient: HttpClient) { }
 
   postJson(url: string, data: any): Observable<any> {
-    let body = JSON.stringify(data);
+    const body = JSON.stringify(data);
     return this.httpClient.post(url, body, httpOptions).pipe(
         catchError(this.handleError)
       );
   }
 
+  // tslint:disable-next-line:no-shadowed-variable
   postOptions(url: string, data: any, httpOptions: any): Observable<any> {
     return this.httpClient.post(url, data, httpOptions).pipe(
       catchError(this.handleError)
@@ -37,7 +39,7 @@ export class ProxyHttpClientService {
   }
 
   put(url: string, data: any): Observable<any> {
-    let body = JSON.stringify(data);
+    const body = JSON.stringify(data);
     return this.httpClient.put(url, body, httpOptions).pipe(
       catchError(this.handleError)
     );

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TouristTravel.Data.Entities
 {
@@ -17,5 +18,9 @@ namespace TouristTravel.Data.Entities
 
 		[Required]
 		public string Password { get; set; }
+
+		public DateTime? DateOfSignUp { get; set; }
+
+		public DateTime? LastDateOfLogin { get; set; }
 	}
 }

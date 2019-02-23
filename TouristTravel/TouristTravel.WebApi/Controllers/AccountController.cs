@@ -1,5 +1,5 @@
-﻿using System.Web.Http;
-using Microsoft.AspNetCore.Cors;
+﻿using System;
+using System.Web.Http;
 using TouristTravel.Services.Interfaces;
 using TouristTravel.Services.Models;
 
@@ -16,7 +16,7 @@ namespace TouristTravel.WebApi.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		public IHttpActionResult SignUp(AccountDto account)
+		public IHttpActionResult SignUp(AccountSignUpDto account)
 		{
 			var isSignUp = _accountService.SignUp(account);
 
@@ -25,11 +25,11 @@ namespace TouristTravel.WebApi.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public IHttpActionResult Test()
+		public IHttpActionResult SignIn(string email, string password, DateTime loginTime)
 		{
-			var test = _accountService.Test();
+			var account = _accountService.SignIn(email, password, loginTime);
 
-			return Ok(test);
+			return Ok(account);
 		}
 	}
 }

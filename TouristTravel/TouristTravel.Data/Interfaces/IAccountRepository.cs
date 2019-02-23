@@ -1,4 +1,5 @@
-﻿using TouristTravel.Data.Entities;
+﻿using System;
+using TouristTravel.Data.Entities;
 
 namespace TouristTravel.Data.Interfaces
 {
@@ -11,5 +12,9 @@ namespace TouristTravel.Data.Interfaces
 		bool UpdatePersonalData(Account account);
 
 		bool CredentialsExist(Account account, int id);
+
+		bool UpdateLoginDate(DateTime loginDateTime, int id);
+
+		bool SignUpByEmail(DateTime signUpDateTime, int id);
 	}
 }

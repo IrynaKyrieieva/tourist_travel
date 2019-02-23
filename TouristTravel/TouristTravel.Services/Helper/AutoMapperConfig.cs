@@ -10,6 +10,7 @@ namespace TouristTravel.Services.Helper
 		{
 			Mapper.Initialize((config) =>
 			{
+				config.CreateMap<AccountSignUpDto, Account>().ReverseMap();
 				config.CreateMap<AccountDto, Account>().ReverseMap();
 				config.CreateMap<Account, AccountDto>().ReverseMap();
 			});
