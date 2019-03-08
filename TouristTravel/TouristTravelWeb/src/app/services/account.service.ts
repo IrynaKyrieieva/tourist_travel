@@ -25,9 +25,11 @@ export class AccountService {
   }
 
   signIn(email: string, password: string): Observable<Account> {
-    const params = new HttpParams().set('loginTime', new Date().toLocaleString('en-US'))
-                                .set('email', email)
-                                .set('password', password);
+    const params = new HttpParams()
+      .set('loginTime', new Date().toLocaleString('en-US'))
+      .set('email', email)
+      .set('password', password);
+
     return this.proxyHttpClientService.get(this.signInUrl, params);
   }
 }

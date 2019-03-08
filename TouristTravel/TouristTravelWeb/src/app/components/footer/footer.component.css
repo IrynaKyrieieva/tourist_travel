@@ -1,0 +1,25 @@
+section{
+    background-color: #121921;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.part{
+    padding-top: 20px;
+}
+
+.text{
+    color: white;
+}
+
+.button{
+    width: 75px;
+}
+
+.text-highlighted{
+    font-family: Satisfy;
+  }
+  
+  .text-style{
+    font-family: Thasadith;
+  }

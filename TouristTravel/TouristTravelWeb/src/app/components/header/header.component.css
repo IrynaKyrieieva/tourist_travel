@@ -1,27 +1,25 @@
-.row {
-    background-image: linear-gradient(#ffffff, #AFEEEE);
+.header-app {
+    background-image: url('/assets/images/header.jpg');
   }
-  
-  .logo {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    height: 65px;
-  }
-  
-  .profile-icon {
-    height: 55px;
-    cursor: pointer;
-    padding-top: 5px;
-  }
-  
-  .nav {
-    padding-top: 10px;
-  }
-  
-  .ngbDropdown {
-    z-index: 1000;
-  }
-  
-  .login {
-    padding-top: 10px; 
-  }
+ 
+.fast-search{
+  padding-top: 100px;
+  padding-bottom: 75px;
+}
+
+.title{
+  color: white;
+  text-align: center;
+}
+
+.text-highlighted{
+  font-family: Satisfy;
+}
+
+.text-style{
+  font-family: Thasadith;
+}
+
+.menu{
+  padding-top: 15px;
+}

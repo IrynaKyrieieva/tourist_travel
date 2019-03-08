@@ -1,0 +1,40 @@
+.nav-menu > li {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.nav-menu > li {
+    float: left;
+}
+
+.nav-menu, .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu li:hover > a, .nav-menu > .menu-active > a {
+    color: cadetblue;
+}
+
+.nav-menu a {
+    padding: 0 8px 10px 8px;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.nav-menu li:hover > ul,
+.nav-menu li.sfHover > ul {
+  display: block;
+}
+
+.nav-menu li {
+    position: relative;
+    white-space: nowrap;
+}
