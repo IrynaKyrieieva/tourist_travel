@@ -20,6 +20,10 @@
   font-family: Thasadith;
 }
 
-.menu{
-  padding-top: 15px;
+.search {
+  width: 125px;
+}
+
+.row{
+  margin-right: 0px;
 }

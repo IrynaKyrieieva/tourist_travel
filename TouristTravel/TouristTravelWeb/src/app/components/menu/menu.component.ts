@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Inject  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { SignInComponent } from '../sign-in/sign-in.component';
@@ -21,4 +21,13 @@ export class MenuComponent {
   this.modalService.open(SignUpComponent);
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e) {
+      var menu = document.getElementById('menu');
+      if (window.pageYOffset > 0) {
+        menu.classList.add('sticky');
+      } else {
+          menu.classList.remove('sticky');
+      }
+  }
 }

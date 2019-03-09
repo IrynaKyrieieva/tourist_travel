@@ -1,7 +1,5 @@
-<section class="header-app">  
-  <div class="row menu">
-      <app-menu></app-menu>
-  </div>
+<div class="header-app">  
+  <app-menu class="menu"></app-menu>
 
   <div class="row">
     <div class="container fast-search">
@@ -18,12 +16,11 @@
             <input (click)="d.toggle()" type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
             <input type="text" class="form-control" placeholder="Guests">
             <div class="input-group-append">
-              <button class="btn btn-info" type="button">Search</button>
+              <button class="btn btn-info search" type="button">Search</button>
             </div>
           </div>
         </div> 
       </div>
     </div>
   </div>
-
-</section>
+</div>

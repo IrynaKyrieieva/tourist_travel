@@ -1,14 +1,24 @@
-<div class="container">
-  <nav>
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="nav-menu">
-          <li><a href="">Home</a></li>
-          <li><a href="">About Us</a></li>
-          <li><a (click)="openSignInComponent()">Sign In</a></li>
-          <li><a (click)="openSignUpComponent()">Sign Up</a></li>
-        </ul>
-      </div>
+<header class="menu fixed-top" id="menu">
+  <div class="row justify-content-between">
+    <div class="nav logo">
+      <h4><img src="/assets/images/logo.png" height="40px" width="40px"/>LOGO</h4>
     </div>
-  </nav>
-</div>
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="openSignUpComponent()" placement="bottom" 
+            ngbTooltip="Sign Up">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="openSignInComponent()" placement="bottom" 
+            ngbTooltip="Sign In">Sign In</a>
+        </li>
+      </ul>
+  </div>
+  
+</header>
