@@ -29,8 +29,6 @@ export class FooterComponent {
         }, (err) => {
           alert(err);
         });
-    } else {
-      alert('Please, write your e-mail!');
     }
   }
 

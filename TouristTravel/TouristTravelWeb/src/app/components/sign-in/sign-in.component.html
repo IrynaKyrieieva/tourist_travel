@@ -22,10 +22,10 @@
         <div class="alert alert-danger" *ngIf="isLoginError">
           Incorrect phone number or password!
         </div>
-  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
-          <button type="submit" class="btn btn-primary" [disabled]="signInForm.invalid">Login</button>
+        
+        <div class="row modal-footer">
+          <button type="button" class="btn btn-outline-dark col-sm-2" (click)="activeModal.close('Close click')">Cancel</button>
+          <button type="submit" class="btn btn-primary col-sm-2" [disabled]="signInForm.invalid">Login</button>
         </div>
       </form>
     </div>  

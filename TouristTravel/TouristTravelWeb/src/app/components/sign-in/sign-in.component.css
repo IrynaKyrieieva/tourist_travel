@@ -1,3 +1,7 @@
 .row {
     padding-top: 1%;
 }
+
+.modal-footer {
+    padding-top: 15px;
+}
