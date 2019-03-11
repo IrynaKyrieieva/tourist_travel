@@ -12,9 +12,16 @@
       <div class="row">
         <div class="col-md-8 offset-md-2 title">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Country">
-            <input (click)="d.toggle()" type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
-            <input type="text" class="form-control" placeholder="Guests">
+            <input type="text" class="form-control position-img location" placeholder="Country"
+                [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
+                (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
+
+            <input type="text" class="form-control position-img calendare" 
+                placeholder="yyyy-mm-dd"/>
+
+            <input type="text" class="form-control guest position-img" placement="bottom" 
+                placeholder="Guests">
+
             <div class="input-group-append">
               <button class="btn btn-info search" type="button">Search</button>
             </div>
@@ -24,3 +31,4 @@
     </div>
   </div>
 </div>
+  

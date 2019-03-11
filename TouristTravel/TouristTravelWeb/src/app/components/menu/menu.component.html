@@ -1,22 +1,22 @@
 <header class="menu fixed-top" id="menu">
   <div class="row justify-content-between">
     <div class="nav logo">
-      <h4 [routerLink]="['/']"><img src="/assets/images/logo.png" height="40px" width="40px"/>LOGO</h4>
+      <h4 [routerLink]="['/']"><img src="/assets/images/logo.png" height="40px" width="40px"/>
+        LOGO
+      </h4>
     </div>
     <ul class="nav">
         <li class="nav-item">
           <a class="nav-link active" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link">Tours</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="openSignUpComponent()" placement="bottom" 
-            ngbTooltip="Sign Up">Sign Up</a>
+            <a class="nav-link" placement="bottom" ngbTooltip="Recommendations">Recommend</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="openSignInComponent()" placement="bottom" 
-            ngbTooltip="Sign In">Sign In</a>
+            <a class="nav-link" (click)="openSignInComponent()">Sign In</a>
         </li>
       </ul>
   </div>

@@ -28,11 +28,6 @@ export class SignInComponent {
 
   signIn(): void {
     if (this.signInForm.valid) {
-      const user = {
-        email: this.signInForm.value.email,
-        password: this.signInForm.value.password
-      };
-
       this.accountService.signIn(this.signInForm.value.email, this.signInForm.value.password).subscribe(
         (account) => {
           alert(account.name);

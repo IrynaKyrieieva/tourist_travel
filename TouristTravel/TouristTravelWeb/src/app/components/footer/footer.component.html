@@ -16,12 +16,17 @@
 
       <div class="col-md-4 part">
         <h5 class="text-style">NEWSLETTER</h5>
-        <div class="input-group">            
-          <input type="text" class="form-control email" placeholder="Your email">
-          <div class="input-group-append">
-            <button class="btn btn-info button" type="button">Send</button>
+        <form [formGroup]="subscribeForm" (ngSubmit)="subscribe()">
+          <div class="input-group">            
+            <input type="text" class="form-control email" formControlName = "email" 
+                placeholder="Your email">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-info button" [disabled]="subscribeForm.invalid">
+                Send
+              </button>
+            </div>
           </div>
-        </div> 
+        </form>  
       </div>
     </div>
   </div>

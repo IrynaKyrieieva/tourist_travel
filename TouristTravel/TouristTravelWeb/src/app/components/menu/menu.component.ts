@@ -10,7 +10,6 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-
   constructor(private modalService: NgbModal) { }
 
   private openSignInComponent(): void {

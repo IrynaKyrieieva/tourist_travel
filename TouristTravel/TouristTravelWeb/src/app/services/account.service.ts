@@ -9,13 +9,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AccountService {
-
-  private cookieToken = 'account_token';
   private url = environment.apiUrl + '/account/';
   private readonly signUpUrl = this.url + 'signUp';
   private readonly signInUrl = this.url + 'signIn';
-  private readonly updateUrl = this.url + 'update';
-  private readonly getAccountUrl = this.url + 'getAccount';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
               private readonly router: Router) { }

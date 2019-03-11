@@ -20,6 +20,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { AccountService } from './services/account.service';
+import { ToursComponent } from './components/tours/tours.component';
+import { RecommendComponent } from './components/recommend/recommend.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AccountService } from './services/account.service';
     SignUpComponent,
     FiltersComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    ToursComponent,
+    RecommendComponent
   ],
   imports: [
     BrowserModule,

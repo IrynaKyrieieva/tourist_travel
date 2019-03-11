@@ -6,6 +6,7 @@ namespace TouristTravel.Data.Interfaces
 	public interface IContext
 	{
 		DbSet<Account> Accounts { get; set; }
+		DbSet<NewsLetter> NewsLetters { get; set; }
 
 		int SaveChanges();
 
