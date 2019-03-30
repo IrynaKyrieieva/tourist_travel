@@ -1,7 +1,9 @@
 export interface Account {
-    name: string;
+    id?: number;
+    firstName: string;
+    lastName: string;
     phone: string;
     email: string;
-    dateOfSignUp: Date;
-    lastDateOfLogin: Date;
+    dateOfSignUp: string;
+    lastDateOfLogin: string;
 }

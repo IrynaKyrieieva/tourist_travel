@@ -1,4 +1,4 @@
-<div class="header-app">  
+<div class="header-app" id="header">  
   <app-menu class="menu"></app-menu>
 
   <div class="row">
@@ -17,7 +17,11 @@
                 (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
 
             <input type="text" class="form-control position-img calendare" 
-                placeholder="yyyy-mm-dd"/>
+                placeholder="dd/mm/yyyy" bsDaterangepicker
+                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+                [(ngModel)]="bsRangeValue"
+                [minDate]="minDate"
+                (bsValueChange)="onValueChange($event)"/>
 
             <input type="text" class="form-control guest position-img" placement="bottom" 
                 placeholder="Guests">
@@ -31,4 +35,4 @@
     </div>
   </div>
 </div>
-  
+

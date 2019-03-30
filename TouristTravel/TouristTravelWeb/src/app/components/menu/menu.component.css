@@ -13,7 +13,11 @@
 }
 
 .menu{
-    padding-top: 10px; 
+    padding-top: 10px;
+}
+
+#menu {        
+    transition: 0.3s;
 }
 
 .nav > li {
@@ -22,12 +26,12 @@ cursor: pointer;
 }
 
 .nav li:hover > a, .nav > .menu-active > a {
-    color: lightseagreen;
+    color: #17a2b8;
 }
 
 li {
     display: inline-block;
-    color:lightseagreen;
+    color:#17a2b8;
     line-height: 1;
     text-decoration:none;
     cursor: pointer;
@@ -35,7 +39,7 @@ li {
 }
 
 li:after {
-    background-color: lightseagreen;
+    background-color: #17a2b8;
     display: block;
     content: "";
     height: 2px;
@@ -59,7 +63,7 @@ li:focus:after {
  text-align: center;
 }
 
-ul{
+ul.nav{
     padding-right: 20px;
     padding-left: 10px;
 }
@@ -73,4 +77,29 @@ ul{
     color: white;
     padding-left: 25px;
     cursor: pointer;
- } 
+ }
+
+ .signOut {
+     visibility: hidden;
+     display: none;
+ }
+
+ .signIn {
+     visibility: visible;
+     display: block;
+ }
+
+ #dropdown-basic {
+    background-color: #121921;
+    opacity: .8;
+ }
+
+ ul.dropdown-menu {
+    padding-right: 5px;
+    padding-left: 5px;
+    top: 33px !important;
+ }
+
+ .menuitem {
+     width: 100%;
+ }

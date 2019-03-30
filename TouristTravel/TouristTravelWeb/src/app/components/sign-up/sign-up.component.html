@@ -3,69 +3,78 @@
         <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
 
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Name</label>
+            <label class="col-sm-4 col-form-label">First Name</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control"
-                formControlName = "userName"
-                placeholder="name">
-            </div>
-            </div>
-
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Phone number</label>
-            <div class="col-sm-8">
-            <input type="tel" class="form-control"
-            formControlName = "userPhone"
-            [textMask]="{mask: phoneMask}"
-            placeholder="XXX XXX XX XX">
+                formControlName = "firstName"
+                placeholder="First name">
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Email</label>
+            <label class="col-sm-4 col-form-label">Last Name</label>
             <div class="col-sm-8">
-            <input type="text" class="form-control"
-            formControlName = "userEmail"
-            placeholder="email@example.com">
+                <input type="text" class="form-control"
+                formControlName = "lastName"
+                placeholder="Last name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Phone number</label>
+            <div class="col-sm-8">
+                <input type="tel" class="form-control"
+                formControlName = "phone"
+                [textMask]="{mask: phoneMask}"
+                placeholder="XXX XXX XX XX">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">E-mail</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control"
+                formControlName = "email"
+                placeholder="email@example.com">
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Password</label>
             <div class="col-sm-8">
-            <input type="text" class="form-control" 
-            formControlName = "password"
-            type="password"
-            placeholder="password">
+                <input type="text" class="form-control" 
+                formControlName = "password"
+                type="password"
+                placeholder="Password">
             </div>
         </div>
 
-        <div class="alert alert-danger"
-            *ngIf="!isValid()">
-                Form is invalid:
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Confirm Password</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" 
+                formControlName = "confirmPassword"
+                type="password"
+                placeholder="Confirm password">
+            </div>
+        </div>
+
+        <div class="alert alert-danger" 
+             *ngIf="!isFieldValid('password') || !isFieldValid('confirmPassword') || !isPasswordEqual('password', 'confirmPassword')">
             <ul>
-            <li *ngIf="!isFieldValid('userName')">
-                Name is required
-            </li>
-
-            <li *ngIf="!isFieldValid('userPhone')">
-                Phone number is required
-            </li>
-
-            <li *ngIf="!isFieldValid('userEmail')">
-                Email isn't correct
-            </li>
-
-            <li *ngIf="!isFieldValid('password')">
-                Password must contain at least one number, one uppercase,
-                and lowercase letter, and at least 8
-            </li>
+                <li *ngIf="!isFieldValid('password')">
+                    Password must contain at least one number, one uppercase,
+                    and lowercase letter, and at least 8
+                </li>
+                <li *ngIf="!isPasswordEqual('password', 'confirmPassword')">
+                    Passwords do not match!
+                </li>
             </ul>
         </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
-            <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Send</button>
+        <div class="modal-footer row">
+            <button type="button" class="btn btn-light col-sm-3" (click)="activeModal.close('Close click')">Cancel</button>
+            <button type="submit" class="btn btn-info col-sm-3" [disabled]="signUpForm.invalid">Sign Up</button>
         </div>      
         </form>
     </div>

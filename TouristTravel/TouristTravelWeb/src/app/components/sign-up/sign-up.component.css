@@ -1,3 +1,7 @@
 .input-padding {
     padding-bottom: 1%;
 }
+
+input.ng-touched.ng-invalid {
+    border:solid palevioletred 1px;
+}

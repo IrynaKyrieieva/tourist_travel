@@ -1,4 +1,12 @@
 .text-highlighted {
-    font-family: Satisfy;
+    font-family: Thasadith;
     font-size: 27px;
+  }
+
+  .cross {
+    color: #f8f9fa;
+  }
+
+  .cross:hover {
+    color: #e2e6ea;
   }

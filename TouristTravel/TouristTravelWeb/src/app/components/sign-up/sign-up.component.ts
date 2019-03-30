@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import { AccountService } from '../../services/account.service';
 import { AccountSignUp } from '../../models/account-sign-up';
@@ -17,42 +18,48 @@ export class SignUpComponent {
   public isValidPhone: boolean;
   public isValidEmail: boolean;
   public isValidPassword: boolean;
+  public isSignUp: boolean;
 
   constructor(private activeModal: NgbActiveModal,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private toastr: ToastrService) {
     this.signUpForm = new FormGroup({
-      userPhone: new FormControl('', [Validators.required, this.userPhoneValidator]),
-      userName: new FormControl('', Validators.required),
-      userEmail: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')])
+      phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')])
     });
     this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   }
 
   signUp(): void {
-    if (this.signUpForm.valid) {
-      const user: AccountSignUp = {
-        name: this.signUpForm.value.userName,
-        phone: this.signUpForm.value.userPhone,
-        email: this.signUpForm.value.userEmail,
-        password: this.signUpForm.value.password,
-        dateOfSignUp: null,
-        lastDateOfLogin: null
-      };
+    const account: AccountSignUp = {
+      firstName: this.signUpForm.value.firstName,
+      lastName: this.signUpForm.value.lastName,
+      phone: this.signUpForm.value.phone,
+      email: this.signUpForm.value.email,
+      password: this.signUpForm.value.password,
+      confirmPassword: this.signUpForm.value.confirmPassword,
+      dateOfSignUp: null,
+      lastDateOfLogin: null
+    };
 
-      this.accountService.signUp(user).subscribe(
-        (isSignUp) => {
-          if (isSignUp) {
-            this.cancel();
-          } else {
-            alert('User with this phone number or e-mail is already exsist');
-          }
-        }, (err) => {
-          alert(err);
-        });
-    } else {
-      alert('Form is invalid, check again please');
-    }
+    this.accountService.signUp(account).subscribe(
+      (isSignUp) => {
+        if (isSignUp) {
+          this.toastr.success('Try Sign In', 'You have successfully Sign Up!');
+          this.cancel();
+        } else {
+          this.toastr.error('User with this e-mail is already exsist');
+        }
+      }, (err) => {
+        this.toastr.error(err);
+    });
+  }
+
+  editAccount(): void {
   }
 
   cancel(): void {
@@ -61,10 +68,12 @@ export class SignUpComponent {
 
   public isValid(): boolean {
     if (this.signUpForm.invalid && (
-      !this.isFieldValid('userName') ||
-      !this.isFieldValid('userPhone') ||
-      !this.isFieldValid('userEmail') ||
-      !this.isFieldValid('password'))) {
+      !this.isFieldValid('firstName') ||
+      !this.isFieldValid('lastName') ||
+      !this.isFieldValid('phone') ||
+      !this.isFieldValid('email') ||
+      !this.isFieldValid('password') ||
+      !this.isPasswordEqual('password', 'confirmPassword'))) {
 
       return false;
     }
@@ -74,6 +83,15 @@ export class SignUpComponent {
 
   public isFieldValid(nameField: string): boolean {
     if (this.signUpForm.controls[nameField].invalid && this.signUpForm.controls[nameField].touched) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public isPasswordEqual(passord: string, cPassword: string) {
+    if (this.signUpForm.controls[cPassword].value !== this.signUpForm.controls[passord].value
+        && this.signUpForm.controls[cPassword].touched) {
       return false;
     }
 

@@ -22,8 +22,6 @@ namespace TouristTravel.Services.Services
 		public bool SignUp(AccountSignUpDto accountDto)
 		{
 			var account = Mapper.Map<AccountSignUpDto, Account>(accountDto);
-			account.DateOfSignUp = null;
-			account.LastDateOfLogin = null;
 			if (_accountRepository.IsUserExist(account))
 			{
 				return false;
@@ -40,7 +38,7 @@ namespace TouristTravel.Services.Services
 			var account = Mapper.Map<Account, AccountDto>(
 				_accountRepository.GetUserByEmailAndPassword(email, GetPasswordHash(password)));
 
-			if (account.DateOfSignUp != null)
+			if (account != null)
 			{
 				account.LastDateOfLogin = loginTime;
 				if (UpdatePersonalData(account))

@@ -24,9 +24,10 @@ namespace TouristTravel.Data.Repositories
 		public bool UpdatePersonalData(Account account)
 		{
 			var changeUser = Db.Accounts.First(x => x.Id == account.Id);
-			changeUser.Name = account.Name;
 			changeUser.Email = account.Email;
 			changeUser.Phone = account.Phone;
+			changeUser.FirstName = account.FirstName;
+			changeUser.LastName = account.LastName;
 
 			Save();
 
@@ -35,7 +36,7 @@ namespace TouristTravel.Data.Repositories
 
 		public bool CredentialsExist(Account account, int id)
 		{
-			var isExist = Db.Accounts.Any(x => (x.Phone == account.Phone || x.Email == account.Email) && x.Id != id);
+			var isExist = Db.Accounts.Any(x => (x.Email == account.Email) && x.Id != id);
 
 			return isExist;
 		}

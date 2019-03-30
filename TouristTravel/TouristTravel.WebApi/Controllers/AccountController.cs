@@ -25,9 +25,9 @@ namespace TouristTravel.WebApi.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public IHttpActionResult SignIn(string email, string password, DateTime loginTime)
+		public IHttpActionResult SignIn(string email, string password, DateTime signInDateTime)
 		{
-			var account = _accountService.SignIn(email, password, loginTime);
+			var account = _accountService.SignIn(email, password, signInDateTime);
 
 			return Ok(account);
 		}

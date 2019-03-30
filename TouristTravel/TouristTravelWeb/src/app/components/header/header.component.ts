@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import {NgbCalendar, NgbTypeahead, NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
+import { TourService } from '../../services/tour.service';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +14,17 @@ export class HeaderComponent {
   @ViewChild('instance') instance: NgbTypeahead;
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
-  hoveredDate: NgbDate;
-  fromDate: NgbDate;
-  toDate: NgbDate;
-  countries = ['Ukraine', 'Russia', 'Slovenia', 'Slovakia'];
+  searchForm: FormGroup;
+  minDate = new Date();
+  bsRangeValue: Date[];
+  countries: string[];
+  adultGuests: number;
+  childGuests: number;
 
-  constructor(calendar: NgbCalendar) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  constructor(private tourService: TourService) {
+    this.configureDatePicker();
+    this.getContries();
+    this.getGuests();
   }
 
   searchCountries = (text$: Observable<string>) => {
@@ -33,26 +38,24 @@ export class HeaderComponent {
     );
   }
 
-  onDateSelection(date: NgbDate) {
-    if (!this.fromDate && !this.toDate) {
-      this.fromDate = date;
-    } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
-      this.toDate = date;
-    } else {
-      this.toDate = null;
-      this.fromDate = date;
-    }
+  onValueChange(dateRange: Date[]): void {
   }
 
-  isHovered(date: NgbDate) {
-    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  private configureDatePicker(): void {
+    let lastDate = new Date();
+    lastDate.setDate(lastDate.getDate() + 10);
+    this.bsRangeValue = [new Date(), lastDate];
   }
 
-  isInside(date: NgbDate) {
-    return date.after(this.fromDate) && date.before(this.toDate);
+  private getContries(): any {
+    this.tourService.getContriesForTrip().subscribe(
+      countries => this.countries = countries,
+      err => alert(err)
+    );
   }
 
-  isRange(date: NgbDate) {
-    return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+  private getGuests() {
+    this.adultGuests = 2;
+    this.childGuests = 0;
   }
 }

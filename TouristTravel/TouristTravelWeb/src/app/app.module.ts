@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { CookieService } from 'ngx-cookie-service';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,10 +22,13 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ToursComponent } from './components/tours/tours.component';
+import { RecommendationComponent } from './components/recommendation/recommendation.component';
+import { TripComponent } from './components/trip/trip.component';
 
 import { AccountService } from './services/account.service';
-import { ToursComponent } from './components/tours/tours.component';
-import { RecommendComponent } from './components/recommend/recommend.component';
+import { TourService } from './services/tour.service';
+import { AccountEditingComponent } from './components/account-editing/account-editing.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,9 @@ import { RecommendComponent } from './components/recommend/recommend.component';
     MenuComponent,
     FooterComponent,
     ToursComponent,
-    RecommendComponent
+    RecommendationComponent,
+    TripComponent,
+    AccountEditingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,11 +55,19 @@ import { RecommendComponent } from './components/recommend/recommend.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    TextMaskModule
+    TextMaskModule,
+    ScrollToModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [
     AccountService,
-    CookieService
+    CookieService,
+    TourService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -1,0 +1,11 @@
+aside {
+    background-color: #e2e6ea;
+    border-radius: 3px;
+    padding: 5%;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+}
