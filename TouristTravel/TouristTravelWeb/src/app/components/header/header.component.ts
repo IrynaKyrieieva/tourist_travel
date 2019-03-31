@@ -4,6 +4,7 @@ import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TourService } from '../../services/tour.service';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent {
   adultGuests: number;
   childGuests: number;
 
-  constructor(private tourService: TourService) {
+  constructor(private tourService: TourService,
+              private scrollService: ScrollService) {
     this.configureDatePicker();
     this.getContries();
     this.getGuests();
@@ -57,5 +59,9 @@ export class HeaderComponent {
   private getGuests() {
     this.adultGuests = 2;
     this.childGuests = 0;
+  }
+
+  private ScrollToComponent(id: string) {
+    this.scrollService.ScrollToOffsetOnly(id);
   }
 }

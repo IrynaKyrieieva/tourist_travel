@@ -7,6 +7,7 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { AccountService } from '../../services/account.service';
 import { environment } from '../../../environments/environment';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,9 +19,8 @@ export class MenuComponent implements DoCheck {
   private isSignIn: boolean;
 
   constructor(private modalService: NgbModal,
-              private scrollToService: ScrollToService,
-              private toastr: ToastrService,
-              private accountService: AccountService) { }
+              private accountService: AccountService,
+              private scrollService: ScrollService) { }
 
   ngDoCheck() {
     if (this.accountService.checkCookie(environment.accountIdCookie)) {
@@ -62,12 +62,7 @@ export class MenuComponent implements DoCheck {
       }
   }
 
-  public ScrollToOffsetOnly(id: string) {
-    const menuHeight = document.getElementById('menu').offsetHeight;
-    const config: ScrollToConfigOptions = {
-      offset: -1 * menuHeight,
-      target: id
-    };
-    this.scrollToService.scrollTo(config);
+  private ScrollToComponent(id: string) {
+    this.scrollService.ScrollToOffsetOnly(id);
   }
 }

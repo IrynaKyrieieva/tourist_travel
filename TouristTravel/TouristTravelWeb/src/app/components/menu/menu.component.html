@@ -7,16 +7,16 @@
     </div>
     <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" (click)="ScrollToOffsetOnly('header')" placement="bottom" ngbTooltip="Home">Home</a>
+          <a class="nav-link active" (click)="ScrollToComponent('header')" placement="bottom" ngbTooltip="Home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="ScrollToOffsetOnly('tours')" placement="bottom" ngbTooltip="Tours">Tours</a>
+          <a class="nav-link" (click)="ScrollToComponent('tours')" placement="bottom" ngbTooltip="Tours">Tours</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="ScrollToOffsetOnly('recommend')" placement="bottom" ngbTooltip="Recommendations">Recommend</a>
+            <a class="nav-link" (click)="ScrollToComponent('recommend')" placement="bottom" ngbTooltip="Recommendations">Recommend</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngx-scroll-to]="'#footer'" placement="bottom" ngbTooltip="Contacts">Contacts</a>
+          <a class="nav-link" (click)="ScrollToComponent('footer')"  placement="bottom" ngbTooltip="Contacts">Contacts</a>
         </li>
         <li class="nav-item" *ngIf="!isSignIn">
             <a class="nav-link" placement="bottom" ngbTooltip="Sign Up" (click)="openSignUpComponent()">
