@@ -4,17 +4,17 @@
     background-size: cover;
   }
  
-.fast-search{
+.fast-search {
   padding-top: 150px;
   padding-bottom: 100px;
 }
 
-.title{
+.title {
   color: white;
   text-align: center;
 }
 
-.text-highlighted{
+.text-highlighted {
   font-family: Satisfy;
 }
 
@@ -26,11 +26,11 @@
   width: 125px;
 }
 
-.row{
+.row {
   margin-right: 0px;
 }
 
-.guest{
+.guest {
   background-image: url("/assets/images/svg/person.svg");
 }
 
@@ -42,7 +42,17 @@
   background-image: url("/assets/images/svg/_calendare.svg");
 }
 
-.position-img{
+.position-img {
   background-position: 98% 50%;
   background-repeat: no-repeat;
+}
+
+.btn-guest {
+  border-radius: 50%;
+  text-align:center;
+}
+
+.dropdown-menu {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
 }

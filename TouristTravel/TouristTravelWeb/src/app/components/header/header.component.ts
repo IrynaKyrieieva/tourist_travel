@@ -64,4 +64,20 @@ export class HeaderComponent {
   private ScrollToComponent(id: string) {
     this.scrollService.ScrollToOffsetOnly(id);
   }
+
+  private addChild() {
+    this.childGuests = this.childGuests + 1;
+  }
+
+  private removeChild() {
+    this.childGuests = this.childGuests - 1;
+  }
+
+  private addAdult() {
+    this.adultGuests = this.adultGuests + 1;
+  }
+
+  private removeAdult() {
+    this.adultGuests = this.adultGuests - 1;
+  }
 }

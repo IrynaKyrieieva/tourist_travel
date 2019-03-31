@@ -6,12 +6,12 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 title">
             <h1 class="text-style">LET's <span class="text-highlighted">go</span> ANYWHERE</h1>
-        </div>          
+        </div>         
       </div>
       
       <div class="row">
         <div class="col-md-10 offset-md-1 title">
-          <div class="input-group">
+          <div class="input-group" ngbDropdown autoClose="outside">
             <input type="text" class="form-control position-img location" placeholder="Country"
                 [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
                 (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
@@ -23,9 +23,22 @@
                 [minDate]="minDate"
                 (bsValueChange)="onValueChange($event)"/>
 
-            <input type="text" class="form-control guest position-img" placement="bottom" 
-                placeholder="Guests">
-
+            <input type="text" id="dropdownGuests" class="form-control guest position-img" 
+              placement="bottom" placeholder="Guests" value="Guests {{adultGuests+childGuests}}" ngbDropdownToggle>
+            <div ngbDropdownMenu aria-labelledby="dropdownGuests">
+              <div>
+                  Adult
+                <button [disabled]="adultGuests == 1" class="btn btn-outline-info btn-guest" (click)="removeAdult()">-</button>
+                  {{adultGuests}}
+                <button [disabled]="adultGuests == 10" class="btn btn-outline-info btn-guest" (click)="addAdult()">+</button>
+              </div>
+              <div>
+                  Child             
+                <button [disabled]="childGuests == 0" class="btn btn-outline-info btn-guest" (click)="removeChild()">-</button>
+                  {{childGuests}}
+                <button [disabled]="childGuests == 10" class="btn btn-outline-info btn-guest" (click)="addChild()">+</button>                
+              </div>
+            </div>
             <div class="input-group-append">
               <button class="btn btn-info search" type="button" (click)="ScrollToComponent('tours')">Search</button>
             </div>
