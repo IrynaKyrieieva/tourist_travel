@@ -75,6 +75,7 @@
         <div class="modal-footer row">
             <button type="button" class="btn btn-light col-sm-3" (click)="activeModal.close('Close click')">Cancel</button>
             <button type="submit" class="btn btn-info col-sm-3" [disabled]="signUpForm.invalid">Sign Up</button>
+            <button *ngIf="" type="submit" class="btn btn-info col-sm-3" [disabled]="signUpForm.invalid">Edit</button>
         </div>      
         </form>
     </div>

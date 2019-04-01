@@ -103,3 +103,7 @@ ul.nav{
  .menuitem {
      width: 100%;
  }
+
+ .dropdown-item:active {
+    color: white !important;
+ }

@@ -16,29 +16,32 @@
                 [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
                 (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
 
-            <input type="text" class="form-control position-img calendare" 
+            <input readonly type="text" class="form-control position-img calendare" 
                 placeholder="dd/mm/yyyy" bsDaterangepicker
                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
                 [(ngModel)]="bsRangeValue"
                 [minDate]="minDate"
                 (bsValueChange)="onValueChange($event)"/>
 
-            <input type="text" id="dropdownGuests" class="form-control guest position-img" 
-              placement="bottom" placeholder="Guests" value="Guests {{adultGuests+childGuests}}" ngbDropdownToggle>
+            <input readonly type="text" id="dropdownGuests" class="form-control guest position-img" placement="bottom" 
+                placeholder="Guests" value="Guests {{adultGuests+childGuests}}" ngbDropdownToggle>
+                <!--<span class="badge badge-pill badge-info">{{adultGuests+childGuests}}</span>-->
             <div ngbDropdownMenu aria-labelledby="dropdownGuests">
-              <div>
-                  Adult
-                <button [disabled]="adultGuests == 1" class="btn btn-outline-info btn-guest" (click)="removeAdult()">-</button>
-                  {{adultGuests}}
-                <button [disabled]="adultGuests == 10" class="btn btn-outline-info btn-guest" (click)="addAdult()">+</button>
+              <div class="guest-control">
+                  <label class="guest-label">Adults</label>
+                  <button [disabled]="adultGuests == 1" class="btn btn-outline-info btn-guest" (click)="removeAdult()">-</button>
+                    <label class="guest-count">{{adultGuests}}</label>
+                  <button [disabled]="adultGuests == 10" class="btn btn-outline-info btn-guest" (click)="addAdult()">+</button>
               </div>
-              <div>
-                  Child             
-                <button [disabled]="childGuests == 0" class="btn btn-outline-info btn-guest" (click)="removeChild()">-</button>
-                  {{childGuests}}
-                <button [disabled]="childGuests == 10" class="btn btn-outline-info btn-guest" (click)="addChild()">+</button>                
+
+              <div class="guest-control">
+                  <label class="guest-label">Children</label>
+                  <button [disabled]="childGuests == 0" class="btn btn-outline-info btn-guest" (click)="removeChild()">-</button>
+                    <label class="guest-count">{{childGuests}}</label>
+                  <button [disabled]="childGuests == 10" class="btn btn-outline-info btn-guest" (click)="addChild()">+</button>                
               </div>
             </div>
+
             <div class="input-group-append">
               <button class="btn btn-info search" type="button" (click)="ScrollToComponent('tours')">Search</button>
             </div>
@@ -48,4 +51,3 @@
     </div>
   </div>
 </div>
-

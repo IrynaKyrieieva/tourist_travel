@@ -28,7 +28,7 @@ import { TripComponent } from './components/trip/trip.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
-import { AccountEditingComponent } from './components/account-editing/account-editing.component';
+import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { AccountEditingComponent } from './components/account-editing/account-ed
     ToursComponent,
     RecommendationComponent,
     TripComponent,
-    AccountEditingComponent
+    AccountProfileComponent
   ],
   imports: [
     BrowserModule,

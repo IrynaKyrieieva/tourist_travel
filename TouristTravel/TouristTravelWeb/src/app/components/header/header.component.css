@@ -31,6 +31,7 @@
 }
 
 .guest {
+  background-color: white;
   background-image: url("/assets/images/svg/person.svg");
 }
 
@@ -40,6 +41,7 @@
 
 .calendare {
   background-image: url("/assets/images/svg/_calendare.svg");
+  background-color: white;
 }
 
 .position-img {
@@ -49,10 +51,37 @@
 
 .btn-guest {
   border-radius: 50%;
-  text-align:center;
+  margin: 4px 2px;
 }
 
 .dropdown-menu {
+  background-color: #121921;
+  opacity: .8;
+  color: white;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
+  padding: 5px;
+}
+
+.guest-control{
+  display: flex;
+}
+
+.guest-label {
+  flex: 1;
+  font-weight: 500;
+  line-height: 25px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.btn-guest {
+  width: 40px;
+  height: 40px;
+}
+
+.guest-count {
+  width: 30px;
+  text-align: center;
+  padding-top: 10px;
 }
