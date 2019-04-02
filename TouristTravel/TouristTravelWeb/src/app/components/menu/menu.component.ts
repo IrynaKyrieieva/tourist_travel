@@ -8,6 +8,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 import { AccountService } from '../../services/account.service';
 import { environment } from '../../../environments/environment';
 import { ScrollService } from '../../services/scroll.service';
+import { AccountProfileComponent } from '../account-profile/account-profile.component';
 
 @Component({
   selector: 'app-menu',
@@ -40,7 +41,7 @@ export class MenuComponent implements DoCheck {
   }
 
   private openEditComponent(): void {
-    this.modalService.open(SignUpComponent);
+    this.modalService.open(AccountProfileComponent);
   }
 
   private openWishList(): void {

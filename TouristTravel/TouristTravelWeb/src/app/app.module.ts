@@ -25,10 +25,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ToursComponent } from './components/tours/tours.component';
 import { RecommendationComponent } from './components/recommendation/recommendation.component';
 import { TripComponent } from './components/trip/trip.component';
+import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
-import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,8 @@ import { AccountProfileComponent } from './components/account-profile/account-pr
   bootstrap: [AppComponent],
   entryComponents: [
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    AccountProfileComponent
   ]
 })
 export class AppModule { }

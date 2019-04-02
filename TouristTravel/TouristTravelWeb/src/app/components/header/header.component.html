@@ -24,8 +24,8 @@
                 (bsValueChange)="onValueChange($event)"/>
 
             <input readonly type="text" id="dropdownGuests" class="form-control guest position-img" placement="bottom" 
-                placeholder="Guests" value="Guests {{adultGuests+childGuests}}" ngbDropdownToggle>
-                <!--<span class="badge badge-pill badge-info">{{adultGuests+childGuests}}</span>-->
+                placeholder="Guests" value="Guests " ngbDropdownToggle>
+                <span class="badge badge-pill badge-info">{{adultGuests+childGuests}}</span>
             <div ngbDropdownMenu aria-labelledby="dropdownGuests">
               <div class="guest-control">
                   <label class="guest-label">Adults</label>

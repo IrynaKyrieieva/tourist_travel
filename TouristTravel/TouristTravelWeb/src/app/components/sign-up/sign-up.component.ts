@@ -89,7 +89,7 @@ export class SignUpComponent {
     return true;
   }
 
-  public isPasswordEqual(passord: string, cPassword: string) {
+  private isPasswordEqual(passord: string, cPassword: string) {
     if (this.signUpForm.controls[cPassword].value !== this.signUpForm.controls[passord].value
         && this.signUpForm.controls[cPassword].touched) {
       return false;
