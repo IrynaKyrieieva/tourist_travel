@@ -22,7 +22,7 @@ namespace TouristTravel.Services.Services
 		public bool SignUp(AccountSignUpDto accountDto)
 		{
 			var account = Mapper.Map<AccountSignUpDto, Account>(accountDto);
-			if (_accountRepository.IsUserExist(account))
+			if (_accountRepository.IsAccountExist(account))
 			{
 				return false;
 			}
@@ -35,15 +35,14 @@ namespace TouristTravel.Services.Services
 
 		public AccountDto SignIn(string email, string password, DateTime loginTime)
 		{
-			var account = Mapper.Map<Account, AccountDto>(
-				_accountRepository.GetUserByEmailAndPassword(email, GetPasswordHash(password)));
+			var account = _accountRepository.GetAccountByEmailAndPassword(email, GetPasswordHash(password));
 
 			if (account != null)
 			{
 				account.LastDateOfLogin = loginTime;
-				if (UpdatePersonalData(account))
+				if (_accountRepository.UpdateLoginDateTime(account.Id, loginTime))
 				{
-					return account;
+					return Mapper.Map<Account, AccountDto>(account);
 				}
 			}
 
@@ -56,6 +55,22 @@ namespace TouristTravel.Services.Services
 
 			return account;
 		}
+
+		public bool ChangePassword(ChangePasswordData passwordData)
+        {
+            var account = _accountRepository.FirstOrDefault(x => x.Id == passwordData.AccountId);
+            if (account != null && GetPasswordHash(passwordData.OldPassword) == account.Password)
+            {
+                if (passwordData.NewPassword == passwordData.OldPassword)
+                {
+                    throw new Exception("Cannot use old password!");
+                }
+                var password = GetPasswordHash(passwordData.NewPassword);
+                return _accountRepository.ChangePassword(passwordData.AccountId, password);
+            }
+
+            return false;
+        }
 
 		public bool UpdatePersonalData(AccountDto accountDto)
 		{

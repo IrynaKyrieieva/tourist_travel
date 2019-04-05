@@ -6,12 +6,16 @@ import { ProxyHttpClientService } from './proxy-http-client.service';
 import { AccountSignUp } from '../models/account-sign-up';
 import { CookieService } from 'ngx-cookie-service';
 import { Account } from '../models/account';
+import {PasswordChange} from '../models/password-change';
 
 @Injectable()
 export class AccountService {
   private url = environment.apiUrl + '/account/';
   private readonly signUpUrl = this.url + 'signUp';
   private readonly signInUrl = this.url + 'signIn';
+  private readonly getAccountUrl = this.url + 'getAccountById';
+  private readonly updateUrl = this.url + 'updateAccount';
+  private readonly updatePasswordUrl = this.url + 'updatePassword';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
               private cookieService: CookieService) { }
@@ -30,11 +34,26 @@ export class AccountService {
     return this.proxyHttpClientService.get(this.signInUrl, params);
   }
 
+  updateAccount(account: Account): Observable<boolean> {
+    return this.proxyHttpClientService.postJson(this.updateUrl, account);
+  }
+
+  updatePassword(passwordDataModel: PasswordChange): Observable<boolean> {
+    return this.proxyHttpClientService.postJson(this.updatePasswordUrl, passwordDataModel);
+  }
+
+  getAccount(): Observable<Account> {
+    const params = new HttpParams()
+      .set('accountId', this.getCookie(environment.accountIdCookie));
+
+    return this.proxyHttpClientService.get(this.getAccountUrl, params);
+  }
+
   saveToCookie(cookieName: string, data: any): void {
     this.cookieService.set(cookieName, data);
   }
 
-  getCookie(cookieName: string): string {
+  getCookie(cookieName: string): any {
     return this.cookieService.get(cookieName);
   }
 

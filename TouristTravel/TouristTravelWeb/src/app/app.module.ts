@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,9 +26,11 @@ import { ToursComponent } from './components/tours/tours.component';
 import { RecommendationComponent } from './components/recommendation/recommendation.component';
 import { TripComponent } from './components/trip/trip.component';
 import { AccountProfileComponent } from './components/account-profile/account-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { TourService } from './services/tour.service';
     ToursComponent,
     RecommendationComponent,
     TripComponent,
-    AccountProfileComponent
+    AccountProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -67,13 +70,15 @@ import { TourService } from './services/tour.service';
   providers: [
     AccountService,
     CookieService,
-    TourService
+    TourService,
+    NotificationService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     SignInComponent,
     SignUpComponent,
-    AccountProfileComponent
+    AccountProfileComponent,
+    ChangePasswordComponent
   ]
 })
 export class AppModule { }

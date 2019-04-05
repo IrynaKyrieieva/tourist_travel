@@ -1,32 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 
 import { AccountService } from '../../services/account.service';
+import { NotificationService } from '../../services/notification.service';
+import { Account } from '../../models/account';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-account-profile',
   templateUrl: './account-profile.component.html',
   styleUrls: ['./account-profile.component.css']
 })
-export class AccountProfileComponent {
+export class AccountProfileComponent implements OnInit {
   public editForm: FormGroup;
   public phoneMask: Array<string | RegExp>;
+  private isChangePassword: boolean;
+  private accountProfile: Account;
 
   constructor(private activeModal: NgbActiveModal,
               private accountService: AccountService,
-              private toastr: ToastrService) {
+              private notificationService: NotificationService) {
+    this.isChangePassword = false;
     this.editForm = new FormGroup({
       phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      oldPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
-      newPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')])
     });
     this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  }
+
+  ngOnInit() {
+    if (this.accountService.checkCookie(environment.accountIdCookie)) {
+      this.getAccount();
+    } else {
+      this.notificationService.defaultError();
+    }
   }
 
   public isFieldValid(nameField: string): boolean {
@@ -37,13 +47,38 @@ export class AccountProfileComponent {
     return true;
   }
 
-  private isPasswordEqual(passord: string, cPassword: string) {
-    if (this.editForm.controls[cPassword].value !== this.editForm.controls[passord].value
-        && this.editForm.controls[cPassword].touched) {
-      return false;
-    }
+  private getAccount(): void {
+    this.accountService.getAccount().subscribe(
+      (account) => {
+        this.editForm.controls.phone.setValue(account.phone);
+        this.editForm.controls.firstName.setValue(account.firstName);
+        this.editForm.controls.lastName.setValue(account.lastName);
+        this.editForm.controls.email.setValue(account.email);
+      },
+      (err) => this.notificationService.error(err)
+    );
+  }
 
-    return true;
+  private updateAccount() {
+    const account: Account = {
+      id: this.accountService.getCookie(environment.accountIdCookie),
+      firstName: this.editForm.value.firstName,
+      lastName: this.editForm.value.lastName,
+      phone: this.editForm.value.phone,
+      email: this.editForm.value.email
+    };
+    this.accountService.updateAccount(account).subscribe(
+      (isUpdate) => {
+        if (isUpdate) {
+          this.accountService.saveToCookie(environment.accountNameCookie, account.firstName);
+          this.notificationService.success('Your personal data is update');
+          this.cancel();
+        } else {
+          this.notificationService.defaultError();
+        }
+      },
+      (err) => this.notificationService.error(err)
+    );
   }
 
   private userPhoneValidator(control: FormControl): { [s: string]: boolean } {
@@ -51,5 +86,9 @@ export class AccountProfileComponent {
       return { userName: true };
     }
     return null;
+  }
+
+  cancel(): void {
+    this.activeModal.close();
   }
 }

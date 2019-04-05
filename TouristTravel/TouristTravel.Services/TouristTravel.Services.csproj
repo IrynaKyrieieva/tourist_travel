@@ -53,6 +53,7 @@
     <Compile Include="Interfaces\ILetterService.cs" />
     <Compile Include="Models\AccountDto.cs" />
     <Compile Include="Models\AccountSignUpDto.cs" />
+    <Compile Include="Models\ChangePasswordData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\LetterService.cs" />

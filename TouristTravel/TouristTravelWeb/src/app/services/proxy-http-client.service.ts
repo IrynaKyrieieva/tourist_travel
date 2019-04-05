@@ -51,8 +51,7 @@ export class ProxyHttpClientService {
     );
   }
 
-  private handleError() {
-    return throwError(
-      'Sorry, there was an error with server. Try later.');
+  private handleError(error) {
+    return throwError(error.error.message);
   }
 }

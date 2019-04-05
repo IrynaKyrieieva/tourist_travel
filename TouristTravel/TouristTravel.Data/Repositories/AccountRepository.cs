@@ -9,12 +9,12 @@ namespace TouristTravel.Data.Repositories
 	{
 		public AccountRepository(IContext db) : base(db) {}
 
-		public Account GetUserByEmailAndPassword(string email, string password)
+		public Account GetAccountByEmailAndPassword(string email, string password)
 		{
 			return Db.Accounts.FirstOrDefault(user => user.Email == email && user.Password == password);
 		}
 
-		public bool IsUserExist(Account account)
+		public bool IsAccountExist(Account account)
 		{
 			var isExist = Db.Accounts.Any(x => x.Phone == account.Phone || x.Email == account.Email);
 
@@ -23,15 +23,19 @@ namespace TouristTravel.Data.Repositories
 
 		public bool UpdatePersonalData(Account account)
 		{
-			var changeUser = Db.Accounts.First(x => x.Id == account.Id);
-			changeUser.Email = account.Email;
-			changeUser.Phone = account.Phone;
-			changeUser.FirstName = account.FirstName;
-			changeUser.LastName = account.LastName;
+			var changeAccount = Db.Accounts.First(x => x.Id == account.Id);
+            if (changeAccount != null)
+            {
+                changeAccount.Email = account.Email;
+                changeAccount.Phone = account.Phone;
+                changeAccount.FirstName = account.FirstName;
+                changeAccount.LastName = account.LastName;
+                Save();
 
-			Save();
+                return true;
+            }
 
-			return true;
+			return false;
 		}
 
 		public bool CredentialsExist(Account account, int id)
@@ -39,15 +43,6 @@ namespace TouristTravel.Data.Repositories
 			var isExist = Db.Accounts.Any(x => (x.Email == account.Email) && x.Id != id);
 
 			return isExist;
-		}
-
-		public bool UpdateLoginDate(DateTime loginDateTime, int id)
-		{
-			var account = GetById(id);
-			account.LastDateOfLogin = loginDateTime;
-			var isAccountUpdated = UpdatePersonalData(account);
-
-			return isAccountUpdated;
 		}
 
 		public bool SignUpByEmail(DateTime signUpDateTime, int id)
@@ -58,5 +53,33 @@ namespace TouristTravel.Data.Repositories
 
 			return isAccountSignIn;
 		}
-	}
+
+        public bool ChangePassword(int id, string password)
+        {
+            var account = Db.Accounts.First(x => x.Id == id);
+            if (account != null)
+            {
+                account.Password = password;
+                Save();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateLoginDateTime(int id, DateTime loginDateTime)
+        {
+            var account = Db.Accounts.First(x => x.Id == id);
+            if (account != null)
+            {
+                account.LastDateOfLogin = loginDateTime;
+                Save();
+
+                return true;
+            }
+
+            return false;
+        }
+    }
 }

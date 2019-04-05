@@ -4,6 +4,6 @@ export interface Account {
     lastName: string;
     phone: string;
     email: string;
-    dateOfSignUp: string;
-    lastDateOfLogin: string;
+    dateOfSignUp?: string;
+    lastDateOfLogin?: string;
 }

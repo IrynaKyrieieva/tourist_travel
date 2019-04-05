@@ -37,6 +37,7 @@
     "ngx-bootstrap": "^3.2.0",
     "ngx-cookie-service": "^2.1.0",
     "ngx-fullpage": "^5.0.4",
+    "ngx-progressbar": "^2.1.1",
     "ngx-toastr": "^10.0.2",
     "npm": "^6.9.0",
     "rxjs": "~6.3.3",

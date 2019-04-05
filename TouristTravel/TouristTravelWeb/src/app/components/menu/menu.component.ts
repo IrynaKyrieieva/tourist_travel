@@ -1,6 +1,5 @@
 import { Component, HostListener, DoCheck  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { ToastrService } from 'ngx-toastr';
 
 import { SignInComponent } from '../sign-in/sign-in.component';
@@ -9,6 +8,7 @@ import { AccountService } from '../../services/account.service';
 import { environment } from '../../../environments/environment';
 import { ScrollService } from '../../services/scroll.service';
 import { AccountProfileComponent } from '../account-profile/account-profile.component';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-menu',
@@ -42,6 +42,10 @@ export class MenuComponent implements DoCheck {
 
   private openEditComponent(): void {
     this.modalService.open(AccountProfileComponent);
+  }
+
+  private openChangePasswordComponent(): void {
+    this.modalService.open(ChangePasswordComponent);
   }
 
   private openWishList(): void {

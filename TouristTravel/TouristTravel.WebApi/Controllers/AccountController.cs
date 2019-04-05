@@ -31,5 +31,37 @@ namespace TouristTravel.WebApi.Controllers
 
 			return Ok(account);
 		}
+
+		[HttpGet]
+		[AllowAnonymous]
+		public IHttpActionResult GetAccountById(int accountId)
+		{
+			var account = _accountService.GetAccount(accountId);
+
+			return Ok(account);
+		}
+
+		[HttpPost]
+		public IHttpActionResult UpdateAccount(AccountDto accountDto)
+		{
+			var account = _accountService.UpdatePersonalData(accountDto);
+
+			return Ok(account);
+		}
+
+		[HttpPost]
+		public IHttpActionResult UpdatePassword(ChangePasswordData passwordData)
+		{
+            try
+            {
+                var isUpdate = _accountService.ChangePassword(passwordData);
+
+                return Ok(isUpdate);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+		}
 	}
 }

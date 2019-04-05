@@ -9,5 +9,6 @@ namespace TouristTravel.Services.Interfaces
 		bool UpdatePersonalData(AccountDto accountDto);
 		AccountDto SignIn(string email, string password, DateTime loginTime);
 		AccountDto GetAccount(int id);
+		bool ChangePassword(ChangePasswordData passwordData);
 	}
 }
