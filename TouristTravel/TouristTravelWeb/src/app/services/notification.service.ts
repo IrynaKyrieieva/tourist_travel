@@ -14,6 +14,10 @@ export class NotificationService {
     this.toastr.error(msg);
   }
 
+  public errorWithTitle(msg: string, title: string) {
+    this.toastr.error(msg, title);
+  }
+
   public successWithTitle(title: string, msg: string) {
     this.toastr.success(msg, title);
   }

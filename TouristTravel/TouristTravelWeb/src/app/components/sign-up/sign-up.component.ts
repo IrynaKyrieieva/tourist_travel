@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../services/notification.service';
 
 import { AccountService } from '../../services/account.service';
 import { AccountSignUp } from '../../models/account-sign-up';
@@ -22,7 +22,7 @@ export class SignUpComponent {
 
   constructor(private activeModal: NgbActiveModal,
               private accountService: AccountService,
-              private toastr: ToastrService) {
+              private notificationService: NotificationService) {
     this.signUpForm = new FormGroup({
       phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
       firstName: new FormControl('', Validators.required),
@@ -49,13 +49,13 @@ export class SignUpComponent {
     this.accountService.signUp(account).subscribe(
       (isSignUp) => {
         if (isSignUp) {
-          this.toastr.success('Try Sign In', 'You have successfully Sign Up!');
+          this.notificationService.success('You have successfully Sign Up!');
           this.cancel();
         } else {
-          this.toastr.error('User with this e-mail is already exsist');
+          this.notificationService.error('User with this e-mail is already exsist');
         }
       }, (err) => {
-        this.toastr.error(err);
+        this.notificationService.error(err);
     });
   }
 

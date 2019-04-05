@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from '../../services/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../services/notification.service';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -20,7 +20,7 @@ export class SignInComponent {
   constructor(private activeModal: NgbActiveModal,
               private modalService: NgbModal,
               private accountService: AccountService,
-              private toastr: ToastrService) {
+              private notificationService: NotificationService) {
     this.signInForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -35,13 +35,13 @@ export class SignInComponent {
           this.accountService.saveToCookie(environment.accountIdCookie, account.id);
           this.accountService.saveToCookie(environment.accountNameCookie, account.firstName);
           this.cancel();
-          this.toastr.success('Successful sign in');
+          this.notificationService.success('Successful sign in');
         } else {
           this.isErrorSignIn = true;
-          this.toastr.error('Try again', 'Incorrect credential');
+          this.notificationService.errorWithTitle('Try again', 'Incorrect credential');
         }
       }, (err) => {
-        this.toastr.error(err);
+        this.notificationService.error(err);
       });
   }
 
