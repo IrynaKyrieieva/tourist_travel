@@ -16,7 +16,7 @@ namespace TouristTravel.Data.Repositories
 
 		public bool IsAccountExist(Account account)
 		{
-			var isExist = Db.Accounts.Any(x => x.Phone == account.Phone || x.Email == account.Email);
+			var isExist = Db.Accounts.Any(x => x.Email == account.Email);
 
 			return isExist;
 		}

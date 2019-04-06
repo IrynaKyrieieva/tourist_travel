@@ -17,15 +17,15 @@ namespace TouristTravel.Services.Services
 		public AccountService(IAccountRepository accountRepository)
 		{
 			_accountRepository = accountRepository;
-		}
+        }
 
 		public bool SignUp(AccountSignUpDto accountDto)
 		{
 			var account = Mapper.Map<AccountSignUpDto, Account>(accountDto);
 			if (_accountRepository.IsAccountExist(account))
 			{
-				return false;
-			}
+                throw new Exception("This e-mail is already exist");
+            }
 
 			account.Password = GetPasswordHash(account.Password);
 			_accountRepository.Create(account);
@@ -46,12 +46,16 @@ namespace TouristTravel.Services.Services
 				}
 			}
 
-			return new AccountDto();
-		}
+            return new AccountDto();
+        }
 
 		public AccountDto GetAccount(int id)
 		{
 			var account = Mapper.Map<Account, AccountDto>(_accountRepository.FirstOrDefault(x => x.Id == id));
+            if (account == null)
+            {
+                throw new Exception("Account with this id isn't exist");
+            }
 
 			return account;
 		}
@@ -65,6 +69,7 @@ namespace TouristTravel.Services.Services
                 {
                     throw new Exception("Cannot use old password!");
                 }
+
                 var password = GetPasswordHash(passwordData.NewPassword);
                 return _accountRepository.ChangePassword(passwordData.AccountId, password);
             }

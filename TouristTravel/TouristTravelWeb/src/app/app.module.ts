@@ -10,6 +10,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,6 +61,12 @@ import { NotificationService } from './services/notification.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TextMaskModule,
+    NgxSpinnerModule,
+    NgProgressModule.withConfig({
+      color: '#17a2b8',
+      meteor: false,
+      thick: true
+    }),
     ScrollToModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),

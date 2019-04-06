@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.Data", "Touri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.WebApi", "TouristTravel.WebApi\TouristTravel.WebApi.csproj", "{83E98380-F6FC-45FC-ABFE-DE540918AE32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristTravel.Api", "TouristTravel.Api\TouristTravel.Api.csproj", "{4F84E566-56AD-4389-B47D-098F92DAB818}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83E98380-F6FC-45FC-ABFE-DE540918AE32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F84E566-56AD-4389-B47D-098F92DAB818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F84E566-56AD-4389-B47D-098F92DAB818}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F84E566-56AD-4389-B47D-098F92DAB818}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F84E566-56AD-4389-B47D-098F92DAB818}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

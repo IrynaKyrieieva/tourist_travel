@@ -9,45 +9,55 @@
         </div>         
       </div>
       
-      <div class="row">
-        <div class="col-md-10 offset-md-1 title">
-          <div class="input-group" ngbDropdown autoClose="outside">
-            <input type="text" class="form-control position-img location" placeholder="Country"
-                [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
-                (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
-
-            <input readonly type="text" class="form-control position-img calendare" 
-                placeholder="dd/mm/yyyy" bsDaterangepicker
-                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
-                [(ngModel)]="bsRangeValue"
-                [minDate]="minDate"
-                (bsValueChange)="onValueChange($event)"/>
-
-            <input readonly type="text" id="dropdownGuests" class="form-control guest position-img" placement="bottom" 
-                placeholder="Guests" value="Guests " ngbDropdownToggle>
-                <span class="badge badge-pill badge-info">{{adultGuests+childGuests}}</span>
-            <div ngbDropdownMenu aria-labelledby="dropdownGuests">
-              <div class="guest-control">
-                  <label class="guest-label">Adults</label>
-                  <button [disabled]="adultGuests == 1" class="btn btn-outline-info btn-guest" (click)="removeAdult()">-</button>
-                    <label class="guest-count">{{adultGuests}}</label>
-                  <button [disabled]="adultGuests == 10" class="btn btn-outline-info btn-guest" (click)="addAdult()">+</button>
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 title">
+            <div class="row" ngbDropdown autoClose="outside">
+              <div class="col-lg-3 form-group form-control-lg">
+                <input type="text" class="form-control position-img location" placeholder="Country"
+                  [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
+                  (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
               </div>
 
-              <div class="guest-control">
-                  <label class="guest-label">Children</label>
-                  <button [disabled]="childGuests == 0" class="btn btn-outline-info btn-guest" (click)="removeChild()">-</button>
-                    <label class="guest-count">{{childGuests}}</label>
-                  <button [disabled]="childGuests == 10" class="btn btn-outline-info btn-guest" (click)="addChild()">+</button>                
+              <div class="col-lg-4 form-group form-control-lg">
+                <input readonly type="text" class="form-control position-img calendare" 
+                  placeholder="When" bsDaterangepicker
+                  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+                  [minDate]="minDate"
+                  [(ngModel)]="bsRangeValue"
+                  (bsValueChange)="onValueChange($event)"/>
               </div>
-            </div>
 
-            <div class="input-group-append">
-              <button class="btn btn-info search" type="button" (click)="ScrollToComponent('tours')">Search</button>
+              <div class="col-lg-3 form-group form-control-lg justify-content-start">
+                <a id="dropdownGuests" class="form-control guest position-img" ngbDropdownToggle>
+                  Guests 
+                  <span class="badge badge-pill badge-info">
+                    {{adultGuests+childGuests}}
+                  </span>
+                </a>
+                
+                <div ngbDropdownMenu aria-labelledby="dropdownGuests">
+                  <div class="guest-control">
+                      <label class="guest-label">Adults</label>
+                      <button [disabled]="adultGuests == 1" class="btn btn-outline-info btn-guest" (click)="removeAdult()">-</button>
+                        <label class="guest-count">{{adultGuests}}</label>
+                      <button [disabled]="adultGuests == 10" class="btn btn-outline-info btn-guest" (click)="addAdult()">+</button>
+                  </div>
+    
+                  <div class="guest-control">
+                      <label class="guest-label">Children</label>
+                      <button [disabled]="childGuests == 0" class="btn btn-outline-info btn-guest" (click)="removeChild()">-</button>
+                        <label class="guest-count">{{childGuests}}</label>
+                      <button [disabled]="childGuests == 10" class="btn btn-outline-info btn-guest" (click)="addChild()">+</button>                
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-2 form-group form-control-lg">
+                <button class="btn btn-info btn-block" type="submit" (click)="ScrollToComponent('tours')">Search</button>
+              </div>
             </div>
           </div>
         </div> 
-      </div>
     </div>
   </div>
 </div>

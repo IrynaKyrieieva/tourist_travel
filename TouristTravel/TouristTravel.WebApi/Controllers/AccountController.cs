@@ -8,46 +8,81 @@ namespace TouristTravel.WebApi.Controllers
 	public class AccountController : ApiController
     {
 		private readonly IAccountService _accountService;
+		private readonly ILetterService _letterService;
 
-		public AccountController(IAccountService accountService)
+		public AccountController(IAccountService accountService,
+                                 ILetterService letterService)
 		{
 			_accountService = accountService;
-		}
+            _letterService = letterService;
+        }
 
 		[HttpPost]
 		[AllowAnonymous]
 		public IHttpActionResult SignUp(AccountSignUpDto account)
 		{
-			var isSignUp = _accountService.SignUp(account);
+            try
+            {
+                var isSignUp = _accountService.SignUp(account);
+                if (isSignUp)
+                {
+                    _letterService.SubscribeOfNewsletter(account.Email, account.DateOfSignUp ?? DateTime.Now.Date);
+                }
 
-			return Ok(isSignUp);
+                return Ok(isSignUp);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 		}
 
 		[HttpGet]
 		[AllowAnonymous]
 		public IHttpActionResult SignIn(string email, string password, DateTime signInDateTime)
 		{
-			var account = _accountService.SignIn(email, password, signInDateTime);
+            try
+            {
+                var account = _accountService.SignIn(email, password, signInDateTime);
 
-			return Ok(account);
-		}
+                return Ok(account);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 		[HttpGet]
 		[AllowAnonymous]
 		public IHttpActionResult GetAccountById(int accountId)
 		{
-			var account = _accountService.GetAccount(accountId);
+            try
+            {
+                var account = _accountService.GetAccount(accountId);
 
-			return Ok(account);
-		}
+                return Ok(account);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 		[HttpPost]
 		public IHttpActionResult UpdateAccount(AccountDto accountDto)
 		{
-			var account = _accountService.UpdatePersonalData(accountDto);
+            try
+            {
+                var account = _accountService.UpdatePersonalData(accountDto);
 
-			return Ok(account);
-		}
+                return Ok(account);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 		[HttpPost]
 		public IHttpActionResult UpdatePassword(ChangePasswordData passwordData)

@@ -4,6 +4,26 @@
     background-size: cover;
   }
  
+.col-lg-3, .col-lg-2, .col-lg-4 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  margin-bottom: 0rem !important;
+}
+
+.row {
+  margin-left: 0px !important;
+}
+
+.form-control {
+  border-radius: 0rem; 
+}
+
+.btn {
+  border-radius: 0rem; 
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
 .fast-search {
   padding-top: 150px;
   padding-bottom: 100px;
@@ -22,10 +42,6 @@
   font-family: Thasadith;
 }
 
-.search {
-  width: 125px;
-}
-
 .row {
   margin-right: 0px;
 }
@@ -37,6 +53,8 @@
 
 .location {
   background-image: url("/assets/images/svg/point.svg");
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
 }
 
 .calendare {
@@ -84,4 +102,13 @@
   width: 30px;
   text-align: center;
   padding-top: 10px;
+}
+
+#dropdownGuests {
+  color: rgb(104, 102, 102);
+  text-align: left;
+}
+
+.dropdown-toggle::after {
+  display:none
 }

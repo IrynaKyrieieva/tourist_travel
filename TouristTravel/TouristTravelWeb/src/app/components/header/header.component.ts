@@ -15,7 +15,6 @@ export class HeaderComponent {
   @ViewChild('instance') instance: NgbTypeahead;
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
-  searchForm: FormGroup;
   minDate = new Date();
   bsRangeValue: Date[];
   countries: string[];
@@ -27,6 +26,10 @@ export class HeaderComponent {
     this.configureDatePicker();
     this.getContries();
     this.getGuests();
+  }
+
+  searchTour() {
+    alert('X');
   }
 
   searchCountries = (text$: Observable<string>) => {

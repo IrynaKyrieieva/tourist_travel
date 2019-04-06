@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
 
 import { AccountService } from '../../services/account.service';
 import { NotificationService } from '../../services/notification.service';
@@ -17,10 +18,12 @@ export class AccountProfileComponent implements OnInit {
   public phoneMask: Array<string | RegExp>;
   private isChangePassword: boolean;
   private accountProfile: Account;
+  progressRef: NgProgressRef;
 
   constructor(private activeModal: NgbActiveModal,
               private accountService: AccountService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private progress: NgProgress) {
     this.isChangePassword = false;
     this.editForm = new FormGroup({
       phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
@@ -32,6 +35,7 @@ export class AccountProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.progressRef = this.progress.ref('progress-bar');
     if (this.accountService.checkCookie(environment.accountIdCookie)) {
       this.getAccount();
     } else {
@@ -48,6 +52,7 @@ export class AccountProfileComponent implements OnInit {
   }
 
   private getAccount(): void {
+    this.progressRef.start();
     this.accountService.getAccount().subscribe(
       (account) => {
         this.editForm.controls.phone.setValue(account.phone);
@@ -55,11 +60,12 @@ export class AccountProfileComponent implements OnInit {
         this.editForm.controls.lastName.setValue(account.lastName);
         this.editForm.controls.email.setValue(account.email);
       },
-      (err) => this.notificationService.error(err)
-    );
+      (err) => this.notificationService.error(err),
+      () => this.progressRef.complete());
   }
 
   private updateAccount() {
+    this.progressRef.start();
     const account: Account = {
       id: this.accountService.getCookie(environment.accountIdCookie),
       firstName: this.editForm.value.firstName,
@@ -77,8 +83,8 @@ export class AccountProfileComponent implements OnInit {
           this.notificationService.defaultError();
         }
       },
-      (err) => this.notificationService.error(err)
-    );
+      (err) => this.notificationService.error(err),
+      () => this.progressRef.complete());
   }
 
   private userPhoneValidator(control: FormControl): { [s: string]: boolean } {

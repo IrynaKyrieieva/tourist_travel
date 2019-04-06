@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
+import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
 
 import { AccountService } from '../../services/account.service';
 import { AccountSignUp } from '../../models/account-sign-up';
@@ -11,7 +12,7 @@ import { AccountSignUp } from '../../models/account-sign-up';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   public signUpForm: FormGroup;
   public phoneMask: Array<string | RegExp>;
   public isValidName: boolean;
@@ -19,10 +20,12 @@ export class SignUpComponent {
   public isValidEmail: boolean;
   public isValidPassword: boolean;
   public isSignUp: boolean;
+  progressRef: NgProgressRef;
 
   constructor(private activeModal: NgbActiveModal,
               private accountService: AccountService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private progress: NgProgress) {
     this.signUpForm = new FormGroup({
       phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
       firstName: new FormControl('', Validators.required),
@@ -32,6 +35,10 @@ export class SignUpComponent {
       confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')])
     });
     this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  }
+
+  ngOnInit() {
+    this.progressRef = this.progress.ref('progress-bar');
   }
 
   signUp(): void {
@@ -45,7 +52,7 @@ export class SignUpComponent {
       dateOfSignUp: null,
       lastDateOfLogin: null
     };
-
+    this.progressRef.start();
     this.accountService.signUp(account).subscribe(
       (isSignUp) => {
         if (isSignUp) {
@@ -54,12 +61,9 @@ export class SignUpComponent {
         } else {
           this.notificationService.error('User with this e-mail is already exsist');
         }
-      }, (err) => {
-        this.notificationService.error(err);
-    });
-  }
-
-  editAccount(): void {
+      },
+      (err) => this.notificationService.error(err),
+      () => this.progressRef.complete());
   }
 
   cancel(): void {

@@ -25,4 +25,12 @@ export class NotificationService {
   public success(msg: string) {
     this.toastr.success(msg);
   }
+
+  public warning(msg: string) {
+    this.toastr.warning(msg);
+  }
+
+  public warningWithTitle(msg: string, title: string) {
+    this.toastr.warning(msg, title);
+  }
 }
