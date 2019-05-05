@@ -1,7 +1,75 @@
 <aside>
-  <p class="title">Filter by:</p>
-  <hr>
+  <p class="title">Where?</p>
   <div>
-    
+      <div class="form-group" ngbDropdown autoClose="outside">
+        <label>Place</label>
+        <input type="text" class="form-control" placeholder="where?"
+          [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
+          (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
+      </div>
+
+      <div class="form-group">
+        <label>Arrival date</label>
+        <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+          [minDate]="minDate"
+          [(ngModel)]="arrivalDate"
+          (bsValueChange)="onArrivalValueChange($event)">
+      </div>
+      <div class="form-group">
+        <label>Departure date</label>
+        <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+          [minDate]="arrivalDate"
+          [(ngModel)]="departureDate"
+          (bsValueChange)="onDepartureValueChange($event)">
+      </div>
+      <div class="row form-group">
+        <div class="col-md-6">
+            <label>Adult</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-info" (click)="removeAdult()">-</button>
+              </div>
+              <input type="text" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-info" (click)="addAdult()">+</button>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label>Children</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-info" (click)="removeChild()">-</button>
+              </div>
+              <input type="text" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-info" (click)="addChild()">+</button>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" type="range" min="0" max="100" step="1">
+      </div>
+      <div class="form-group">
+        <label>Transport</label>
+        <div class="row">
+          <div class="col-md-3">
+              TTT
+          </div>
+          <div class="col-md-3">
+              TTT
+          </div>
+          <div class="col-md-3">
+              TTT
+          </div>
+          <div class="col-md-3">
+            TTT
+        </div>
+        </div>         
+      </div>
   </div>
 </aside>

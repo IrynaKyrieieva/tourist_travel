@@ -12,6 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { OwlModule } from 'ngx-owl-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { RecommendationComponent } from './components/recommendation/recommendat
 import { TripComponent } from './components/trip/trip.component';
 import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { TourCardComponent } from './components/tour-card/tour-card.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
@@ -49,7 +51,8 @@ import { NotificationService } from './services/notification.service';
     RecommendationComponent,
     TripComponent,
     AccountProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    TourCardComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ import { NotificationService } from './services/notification.service';
     BrowserAnimationsModule,
     TextMaskModule,
     NgxSpinnerModule,
+    OwlModule,
     NgProgressModule.withConfig({
       color: '#17a2b8',
       meteor: false,

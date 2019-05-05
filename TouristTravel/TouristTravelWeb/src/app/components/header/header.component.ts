@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
 import { TourService } from '../../services/tour.service';
 import { ScrollService } from '../../services/scroll.service';
 
@@ -28,10 +27,6 @@ export class HeaderComponent {
     this.getGuests();
   }
 
-  searchTour() {
-    alert('X');
-  }
-
   searchCountries = (text$: Observable<string>) => {
     const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
     const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
@@ -41,9 +36,6 @@ export class HeaderComponent {
       map(term => (term === '' ? this.countries
         : this.countries.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
     );
-  }
-
-  onValueChange(dateRange: Date[]): void {
   }
 
   private configureDatePicker(): void {

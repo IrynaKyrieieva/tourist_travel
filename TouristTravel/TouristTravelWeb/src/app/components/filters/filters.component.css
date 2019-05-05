@@ -6,6 +6,42 @@ aside {
 
 .title {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
     font-family: "Montserrat", sans-serif;
+}
+
+label {
+    margin-bottom: 0rem !important;
+}
+
+input, button {
+    border-radius: 25px;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    padding: 0;
+    box-shadow: inset 0 0 0 2px rgb(168, 168, 168);
+    background: white;
+    overflow: hidden;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    border: 2px solid #818181;
+    background: #fff;
+    box-shadow:
+    -13px 0 #17a2b8, -26px 0 #17a2b8, -39px 0 #17a2b8,
+    -52px 0 #17a2b8, -65px 0 #17a2b8, -78px 0 #17a2b8,
+    -91px 0 #17a2b8, -104px 0 #17a2b8, -117px 0 #17a2b8,
+    -130px 0 #17a2b8, -143px 0 #17a2b8, -156px 0 #17a2b8,
+    -169px 0 #17a2b8, -182px 0 #17a2b8, -195px 0 #17a2b8,
+    -208px 0 #17a2b8, -221px 0 #17a2b8, -234px 0 #17a2b8,
+    -247px 0 #17a2b8, -260px 0 #17a2b8;
 }

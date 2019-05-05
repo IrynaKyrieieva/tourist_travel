@@ -1,8 +1,12 @@
-#tours {
-    margin-right: 0;
+.filters {
+    margin: 3%;
+    position: sticky;
 }
 
 .tours {
-    padding: 1%;
-    
+    margin: 1%;
+}
+
+.card {
+    padding: 2%;
 }
