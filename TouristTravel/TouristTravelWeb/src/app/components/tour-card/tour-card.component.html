@@ -1,8 +1,16 @@
 <div class="card">
-    <img [src]="imageUrl" class="card-img-top">
-    <div class="card-body">
-      <p class="card-text">
-        {{description}}
-      </p>
-    </div>
+  <div *ngIf="isSignIn" class="favourite"
+    [ngClass]="tour.isFavorite == true ? 'selected' : 'non-selected'" (click)="addToFavourite()"  
+    ngbTooltip="Add to favorites" placement="bottom">
+      &#x2665;
+  </div>
+  <div (click)="openTour()">
+      <img [src]="imageUrl" class="card-img-top">
+      <div class="card-body">
+        <h5 *ngIf="tour.title" class="card-title">{{tour.title}}</h5>
+        <p  *ngIf="description" class="card-text">
+          {{description}}
+        </p>
+      </div>
+  </div>
 </div>

@@ -23,7 +23,7 @@ export class MenuComponent implements DoCheck {
               private scrollService: ScrollService) { }
 
   ngDoCheck() {
-    if (this.accountService.checkCookie(environment.accountIdCookie)) {
+    if (this.accountService.isSignIn()) {
       this.isSignIn = true;
       this.accountName = this.accountService.getCookie(environment.accountNameCookie);
     } else {

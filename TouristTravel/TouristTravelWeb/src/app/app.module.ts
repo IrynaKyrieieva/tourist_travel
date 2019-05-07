@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OwlModule } from 'ngx-owl-carousel';
+import { SwiperModule } from 'angular2-useful-swiper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,14 +28,15 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ToursComponent } from './components/tours/tours.component';
 import { RecommendationComponent } from './components/recommendation/recommendation.component';
-import { TripComponent } from './components/trip/trip.component';
 import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TourCardComponent } from './components/tour-card/tour-card.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
 import { NotificationService } from './services/notification.service';
+import { TourDetailsComponent } from './components/tour-details/tour-details.component';
 
 @NgModule({
   declarations: [
@@ -49,10 +51,11 @@ import { NotificationService } from './services/notification.service';
     FooterComponent,
     ToursComponent,
     RecommendationComponent,
-    TripComponent,
     AccountProfileComponent,
     ChangePasswordComponent,
-    TourCardComponent
+    TourCardComponent,
+    WishListComponent,
+    TourDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { NotificationService } from './services/notification.service';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    SwiperModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     TextMaskModule,

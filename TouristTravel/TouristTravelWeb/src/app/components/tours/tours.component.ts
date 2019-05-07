@@ -1,18 +1,24 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Tour } from '../../models/tour';
 
 @Component({
   selector: 'app-tours',
   templateUrl: './tours.component.html',
   styleUrls: ['./tours.component.css']
 })
-export class ToursComponent implements AfterViewInit {
-  imageUrl: string;
-  description: string;
-  title: string;
+export class ToursComponent implements OnInit, AfterViewInit {
+  tour: Tour = {
+    imageUrl: '1.jpg',
+    // tslint:disable-next-line:max-line-length
+    description: 'Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.',
+    title: 'Title',
+    id: 1
+  };
 
   constructor() {
-    this.imageUrl = '1.jpg';
-    this.description = 'Something';
+  }
+
+  ngOnInit() {
   }
 
   ngAfterViewInit() {

@@ -64,4 +64,8 @@ export class AccountService {
   checkCookie(cookieName: string): boolean {
     return this.cookieService.check(cookieName);
   }
+
+  isSignIn(): boolean {
+    return this.checkCookie(environment.accountIdCookie) ? true : false;
+  }
 }

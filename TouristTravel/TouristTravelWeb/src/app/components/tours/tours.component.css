@@ -10,3 +10,8 @@
 .card {
     padding: 2%;
 }
+
+#tours {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
