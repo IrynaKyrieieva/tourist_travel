@@ -13,7 +13,8 @@ namespace TouristTravel.Services.Helper
 				config.CreateMap<AccountSignUpDto, Account>().ReverseMap();
 				config.CreateMap<AccountDto, Account>().ReverseMap();
 				config.CreateMap<Account, AccountDto>().ReverseMap();
-			});
+                config.CreateMap<Tour, TourDto>().ReverseMap();
+            });
 		}
 	}
 }

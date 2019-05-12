@@ -51,12 +51,15 @@
     <Compile Include="Helper\AutoMapperConfig.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\ILetterService.cs" />
+    <Compile Include="Interfaces\ITourService.cs" />
     <Compile Include="Models\AccountDto.cs" />
     <Compile Include="Models\AccountSignUpDto.cs" />
     <Compile Include="Models\ChangePasswordData.cs" />
+    <Compile Include="Models\TourDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\LetterService.cs" />
+    <Compile Include="Services\TourService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TouristTravel.Data\TouristTravel.Data.csproj">

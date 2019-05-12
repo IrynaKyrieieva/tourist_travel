@@ -5,7 +5,8 @@ namespace TouristTravel.Data.Entities
 {
 	public class NewsLetter
 	{
-		public int Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
 		[Required]
 		public string Email { get; set; }
