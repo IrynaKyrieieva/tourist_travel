@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { TourDetailsComponent } from './components/tour-details/tour-details.component';
+import { WishListGuard } from './services/wish-list.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'wish-list',
-    component: WishListComponent
+    component: WishListComponent,
+    canActivate: [WishListGuard]
+  },
+  {
+    path: 'tour/:id',
+    component: TourDetailsComponent
   },
   {
     path: '**',
@@ -24,8 +31,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true
+    useHash: true,
+    scrollPositionRestoration: 'enabled'
   })],
+  providers: [WishListGuard],
   exports: [RouterModule]
 })
 

@@ -1,25 +1,35 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ProxyHttpClientService } from './proxy-http-client.service';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { Tour } from '../models/tour';
+import { Country } from '../models/country';
+import { AccountService } from './account.service';
 
 @Injectable()
 export class TourService {
   private url = environment.apiUrl + '/tour/';
   private readonly countriesUrl = this.url + 'getCountries';
   private readonly addToFavoritesUrl = this.url + 'addToFavorites';
-  private readonly deleteToFavouriteUrl = this.url + 'deleteToFavourite';
+  private readonly deleteToFavouriteUrl = this.url + 'deleteFromFavourite';
+  private readonly getTourByIdUrl = this.url + 'getTourById';
+  private readonly getWishListUrl = this.url + 'getWishList';
+  private readonly getToursUrl = this.url + 'getTours';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
-              private cookieService: CookieService) { }
+              private accountService: AccountService) { }
 
-  getContriesForTrip(): Observable<string[]> {
+  getContriesForTrip(): Observable<Country[]> {
     return this.proxyHttpClientService.get(this.countriesUrl);
   }
 
-  addToFavorite(accountId: number, tourId: number): Observable<boolean> {
+  getTours(): Observable<Tour[]> {
+    return this.proxyHttpClientService.get(this.getToursUrl);
+  }
+
+  addToFavorite(tourId: number): Observable<boolean> {
+    const accountId = this.accountService.tryGetCookie(environment.accountIdCookie);
     const params = new HttpParams()
       .set('accountId', accountId.toLocaleString())
       .set('tourId', tourId.toLocaleString());
@@ -27,11 +37,28 @@ export class TourService {
     return this.proxyHttpClientService.get(this.addToFavoritesUrl, params);
   }
 
-  deleteToFavorite(accountId: number, tourId: number): Observable<boolean> {
+  deleteToFavorite(tourId: number): Observable<boolean> {
+    const accountId = this.accountService.tryGetCookie(environment.accountIdCookie);
     const params = new HttpParams()
       .set('accountId', accountId.toLocaleString())
       .set('tourId', tourId.toLocaleString());
 
     return this.proxyHttpClientService.get(this.deleteToFavouriteUrl, params);
+  }
+
+  getTourById(tourId: number): Observable<Tour> {
+    const params = new HttpParams().set('tourId', tourId.toLocaleString());
+
+    return this.proxyHttpClientService.get(this.getTourByIdUrl, params);
+  }
+
+  getWishList(): Observable<Tour[]> {
+    const accountId = this.accountService.tryGetCookie(environment.accountIdCookie);
+    if (accountId) {
+      const params = new HttpParams().set('accountId', accountId.toLocaleString());
+      return this.proxyHttpClientService.get(this.getWishListUrl, params);
+    } else {
+
+    }
   }
 }

@@ -1,41 +1,49 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import {Observable, Subject, merge} from 'rxjs';
-import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TourService } from '../../services/tour.service';
 import { ScrollService } from '../../services/scroll.service';
+import { Country } from '../../models/country';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  @ViewChild('instance') instance: NgbTypeahead;
-  focus$ = new Subject<string>();
-  click$ = new Subject<string>();
+export class HeaderComponent implements OnInit {
   minDate = new Date();
   bsRangeValue: Date[];
-  countries: string[];
+  countries: Country[];
+  selectedCountry: Country;
+  selectedCountryString: string;
   adultGuests: number;
   childGuests: number;
 
   constructor(private tourService: TourService,
-              private scrollService: ScrollService) {
+              private scrollService: ScrollService) {  }
+
+  ngOnInit() {
+    this.changeMenuColor();
     this.configureDatePicker();
     this.getContries();
     this.getGuests();
   }
 
-  searchCountries = (text$: Observable<string>) => {
-    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-    const inputFocus$ = this.focus$;
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e): void {
+    this.changeMenuColor();
+  }
 
-    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-      map(term => (term === '' ? this.countries
-        : this.countries.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-    );
+  onSelect(event: TypeaheadMatch): void {
+    this.selectedCountry = event.item;
+  }
+
+  private changeMenuColor(): void {
+    let menu = document.getElementById('menu');
+    if (window.pageYOffset > 0) {
+      menu.style.backgroundColor = '#121921';
+    } else {
+        menu.style.backgroundColor = '';
+    }
   }
 
   private configureDatePicker(): void {

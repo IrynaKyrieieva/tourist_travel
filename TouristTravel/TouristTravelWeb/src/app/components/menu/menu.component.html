@@ -7,16 +7,16 @@
     </div>
     <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/" (click)="ScrollToComponent('header')" placement="bottom" ngbTooltip="Home">Home</a>
+          <a class="nav-link active" (click)="internalRoute('home')" placement="bottom" ngbTooltip="Home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" (click)="ScrollToComponent('tours')" placement="bottom" ngbTooltip="Tours">Tours</a>
+          <a class="nav-link" (click)="internalRoute('tours')" placement="bottom" ngbTooltip="Tours">Tours</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/" (click)="ScrollToComponent('recommend')" placement="bottom" ngbTooltip="Recommendations">Recommend</a>
+            <a class="nav-link" (click)="internalRoute('recommend')" placement="bottom" ngbTooltip="Recommendations">Recommend</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="ScrollToComponent('footer')"  placement="bottom" ngbTooltip="Contacts">Contacts</a>
+          <a class="nav-link" (click)="ScrollToComponentById('footer')"  placement="bottom" ngbTooltip="Contacts">Contacts</a>
         </li>
         <li class="nav-item" *ngIf="!isSignIn">
             <a class="nav-link" placement="bottom" ngbTooltip="Sign Up" (click)="openSignUpComponent()">
@@ -36,11 +36,11 @@
           </a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" 
               role="menu" aria-labelledby="button-basic">
-            <li class="menuitem" role="menuitem"><a class="dropdown-item" routerLink="/wish-list">Wish list</a></li>
+            <li class="menuitem" role="menuitem"><a class="dropdown-item" [routerLink]="['/wish-list']">Wish list</a></li>
             <li class="menuitem" role="menuitem"><a class="dropdown-item" (click)="openEditComponent()">Edit Profile</a></li>
             <li class="menuitem" role="menuitem"><a class="dropdown-item" (click)="openChangePasswordComponent()">Change Password</a></li>
             <div class="dropdown-divider"></div>
-            <li class="menuitem" role="menuitem"><a class="dropdown-item" (click)="signOut()">Sign Out</a></li>
+            <li class="menuitem" role="menuitem"><a class="dropdown-item" [routerLink]="['/']" (click)="signOut()">Sign Out</a></li>
           </ul>
         </li>
       </ul>

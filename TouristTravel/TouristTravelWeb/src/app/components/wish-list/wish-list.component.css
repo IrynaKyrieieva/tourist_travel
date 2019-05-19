@@ -1,8 +1,18 @@
 .col-md-4 {
-    padding: 2%;
+    padding: 10px 30px;
 }
 
 .row {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
+.title {
+    font-family: Thasadith;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.text-highlighted {
+    font-family: Satisfy;
+  }

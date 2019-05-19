@@ -12,5 +12,9 @@ namespace TouristTravel.Services.Interfaces
         List<TourDto> GetRecommendTours(int accountId);
 
         List<TourDto> GetTours();
+
+        void AddTourToWishList(int accountId, int tourId);
+
+        void DeleteTourToWishList(int accountId, int tourId);
     }
 }

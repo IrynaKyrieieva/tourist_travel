@@ -1,14 +1,10 @@
-<div class="row" #wishList>
-  <div class="col-md-4">
-      <app-tour-card [tour]="tour"></app-tour-card>
-  </div>
-  <div class="col-md-4">
-      <app-tour-card [tour]="tour"></app-tour-card>
-  </div>
-  <div class="col-md-4">
-      <app-tour-card [tour]="tour"></app-tour-card>
-  </div>
-  <div class="col-md-4">
-      <app-tour-card [tour]="tour"></app-tour-card>
-  </div>
+<div id='wishList'>
+    <div class="row title justify-content-center">
+        <h2>YOUR <span class="text-highlighted"> wish </span> LIST</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let tour of tours">
+            <app-tour-card [tour]="tour" (click)="deleteTour(tour.id)"></app-tour-card>
+        </div>
+    </div>
 </div>

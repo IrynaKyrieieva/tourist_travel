@@ -1,5 +1,6 @@
-import { Component, HostListener, DoCheck  } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
@@ -14,13 +15,15 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements DoCheck {
+export class MenuComponent implements DoCheck, OnInit {
   private accountName: string;
   private isSignIn: boolean;
+  private sectionScroll;
 
   constructor(private modalService: NgbModal,
               private accountService: AccountService,
-              private scrollService: ScrollService) { }
+              private scrollService: ScrollService,
+              private router: Router) { }
 
   ngDoCheck() {
     if (this.accountService.isSignIn()) {
@@ -29,6 +32,16 @@ export class MenuComponent implements DoCheck {
     } else {
       this.isSignIn = false;
     }
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      this.ScrollToComponent();
+      this.sectionScroll = null;
+    });
   }
 
   private openSignInComponent(): void {
@@ -47,26 +60,29 @@ export class MenuComponent implements DoCheck {
     this.modalService.open(ChangePasswordComponent);
   }
 
-  private openWishList(): void {
-    alert('Wish List');
-  }
-
   private signOut() {
     this.accountService.deleteCookie(environment.accountNameCookie);
     this.accountService.deleteCookie(environment.accountIdCookie);
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(e): void {
-      var menu = document.getElementById('menu');
-      if (window.pageYOffset > 0) {
-        menu.classList.add('sticky');
-      } else {
-          menu.classList.remove('sticky');
-      }
+  private ScrollToComponent() {
+    if (!this.sectionScroll) {
+      return;
+    }
+
+    try {
+      this.scrollService.ScrollToOffsetOnly(this.sectionScroll);
+    } finally {
+      this.sectionScroll = null;
+    }
   }
 
-  private ScrollToComponent(id: string) {
+  private ScrollToComponentById(id: string) {
     this.scrollService.ScrollToOffsetOnly(id);
   }
+
+  private internalRoute(dst) {
+    this.sectionScroll = dst;
+    this.router.navigate(['/'], {fragment: dst});
+}
 }

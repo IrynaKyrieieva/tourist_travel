@@ -6,21 +6,9 @@
   </div>
   <div class="col-lg-9">
      <div class="row tours">
-        <div class="col-lg-6">
+        <div class="col-lg-6" *ngFor="let tour of tours">
           <app-tour-card [tour]="tour"></app-tour-card>
-        </div>
-        <div class="col-lg-6">
-          <app-tour-card [tour]="tour"></app-tour-card>
-        </div>
-        <div class="col-lg-6">
-          <app-tour-card [tour]="tour"></app-tour-card>
-        </div>   
-        <div class="col-lg-6">
-            <app-tour-card [tour]="tour"></app-tour-card>
-        </div>     
-        <div class="col-lg-6">
-            <app-tour-card [tour]="tour"></app-tour-card>
-        </div>    
+        </div>  
      </div>
   </div>
 </div>

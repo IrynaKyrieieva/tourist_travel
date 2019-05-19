@@ -16,4 +16,10 @@ export class ScrollService {
     };
     this.scrollToService.scrollTo(config);
   }
+
+  public AddMarginForMenu(divId: string) {
+    const menu = document.getElementById('menu');
+    document.getElementById(divId).style.marginTop = menu.offsetHeight + 'px';
+    menu.style.backgroundColor = '#121921';
+  }
 }

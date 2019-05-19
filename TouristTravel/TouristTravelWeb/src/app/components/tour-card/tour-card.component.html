@@ -1,10 +1,10 @@
 <div class="card">
   <div *ngIf="isSignIn" class="favourite"
     [ngClass]="tour.isFavorite == true ? 'selected' : 'non-selected'" (click)="addToFavourite()"  
-    ngbTooltip="Add to favorites" placement="bottom">
+    placement="bottom">
       &#x2665;
   </div>
-  <div (click)="openTour()">
+  <div [routerLink]="['/tour', tour.id]">
       <img [src]="imageUrl" class="card-img-top">
       <div class="card-body">
         <h5 *ngIf="tour.title" class="card-title">{{tour.title}}</h5>

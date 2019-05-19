@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import {Observable, Subject, merge} from 'rxjs';
-import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { Component } from '@angular/core';
 import { TourService } from '../../services/tour.service';
-
 import { NotificationService } from '../../services/notification.service';
+import { Country } from '../../models/country';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 
 @Component({
   selector: 'app-filters',
@@ -13,10 +10,9 @@ import { NotificationService } from '../../services/notification.service';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent {
-  @ViewChild('instance') instance: NgbTypeahead;
-  focus$ = new Subject<string>();
-  click$ = new Subject<string>();
-  countries: string[];
+  countries: Country[];
+  selectedCountry: Country;
+  selectedCountryString: string;
   minDate = new Date();
   maxDate: Date = null;
   arrivalDate: Date = null;
@@ -25,17 +21,6 @@ export class FiltersComponent {
   constructor(private tourService: TourService,
               private notificationService: NotificationService) {
     this.getContries();
-  }
-
-  searchCountries = (text$: Observable<string>) => {
-    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-    const inputFocus$ = this.focus$;
-
-    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-      map(term => (term === '' ? this.countries
-        : this.countries.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-    );
   }
 
   private getContries(): any {
@@ -55,5 +40,9 @@ export class FiltersComponent {
 
   onDepartureValueChange(date: Date): void {
     this.departureDate = date;
+  }
+
+  onSelect(event: TypeaheadMatch): void {
+    this.selectedCountry = event.item;
   }
 }

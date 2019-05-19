@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Tour } from '../../models/tour';
+import {TourService} from '../../services/tour.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-tours',
@@ -7,18 +9,20 @@ import { Tour } from '../../models/tour';
   styleUrls: ['./tours.component.css']
 })
 export class ToursComponent implements OnInit, AfterViewInit {
-  tour: Tour = {
-    imageUrl: '1.jpg',
-    // tslint:disable-next-line:max-line-length
-    description: 'Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.',
-    title: 'Title',
-    id: 1
-  };
+  tours: Tour[];
 
-  constructor() {
+  constructor(private tourService: TourService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
+    this.tourService.getTours().subscribe(
+      (tours) => {
+        tours.forEach(x => x.imageUrl = '1.jpg');
+        this.tours = tours;
+      },
+      (err) => this.notificationService.error(err)
+    );
   }
 
   ngAfterViewInit() {

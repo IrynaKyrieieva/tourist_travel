@@ -1,6 +1,4 @@
-<div class="header-app" id="header">  
-  <app-menu class="menu"></app-menu>
-
+<div class="header-app" id="home">
   <div class="row">
     <div class="container fast-search">
       <div class="row">
@@ -14,8 +12,10 @@
             <div class="row" ngbDropdown autoClose="outside">
               <div class="col-lg-3 form-group form-control-lg">
                 <input type="text" class="form-control position-img location" placeholder="Country"
-                  [ngbTypeahead]="searchCountries" (focus)="focus$.next($event.target.value)"
-                  (click)="click$.next($event.target.value)" #instance="ngbTypeahead">
+                  [(ngModel)]="selectedCountryString"
+                  [typeahead]="countries"
+                  typeaheadOptionField="name"
+                  (typeaheadOnSelect)="onSelect($event)">
               </div>
 
               <div class="col-lg-4 form-group form-control-lg">

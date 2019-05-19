@@ -55,12 +55,14 @@
     <Compile Include="Entities\Tour.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IContext.cs" />
+    <Compile Include="Interfaces\IFavoriteToUserRepository.cs" />
     <Compile Include="Interfaces\ILetterRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ITourRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CommonRepository.cs" />
+    <Compile Include="Repositories\FavoriteToUserRepository.cs" />
     <Compile Include="Repositories\LetterRepository.cs" />
     <Compile Include="Repositories\TourRepository.cs" />
   </ItemGroup>

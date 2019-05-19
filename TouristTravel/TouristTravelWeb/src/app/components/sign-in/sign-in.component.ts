@@ -43,6 +43,7 @@ export class SignInComponent implements OnInit {
           this.accountService.saveToCookie(environment.accountIdCookie, account.id);
           this.accountService.saveToCookie(environment.accountNameCookie, account.firstName);
           this.notificationService.success('Successful sign in');
+          this.progressRef.complete();
           this.cancel();
         } else {
           this.isErrorSignIn = true;

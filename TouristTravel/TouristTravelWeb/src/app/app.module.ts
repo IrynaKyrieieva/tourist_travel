@@ -6,14 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OwlModule } from 'ngx-owl-carousel';
 import { SwiperModule } from 'angular2-useful-swiper';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,11 +34,12 @@ import { AccountProfileComponent } from './components/account-profile/account-pr
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TourCardComponent } from './components/tour-card/tour-card.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { TourDetailsComponent } from './components/tour-details/tour-details.component';
 
 import { AccountService } from './services/account.service';
 import { TourService } from './services/tour.service';
 import { NotificationService } from './services/notification.service';
-import { TourDetailsComponent } from './components/tour-details/tour-details.component';
+import { NewsletterService } from './services/newsletter.service';
 
 @NgModule({
   declarations: [
@@ -78,8 +81,9 @@ import { TourDetailsComponent } from './components/tour-details/tour-details.com
     ScrollToModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
+    TypeaheadModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 3000,
       positionClass: 'toast-bottom-right'
     })
   ],
@@ -87,7 +91,8 @@ import { TourDetailsComponent } from './components/tour-details/tour-details.com
     AccountService,
     CookieService,
     TourService,
-    NotificationService
+    NotificationService,
+    NewsletterService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
