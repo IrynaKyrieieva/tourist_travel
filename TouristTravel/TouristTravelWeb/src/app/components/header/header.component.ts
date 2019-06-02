@@ -3,6 +3,7 @@ import { TourService } from '../../services/tour.service';
 import { ScrollService } from '../../services/scroll.service';
 import { Country } from '../../models/country';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   adultGuests: number;
   childGuests: number;
 
-  constructor(private tourService: TourService,
+  constructor(private countryService: CountryService,
               private scrollService: ScrollService) {  }
 
   ngOnInit() {
@@ -53,10 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   private getContries(): any {
-    this.tourService.getContriesForTrip().subscribe(
-      countries => this.countries = countries,
-      err => alert(err)
-    );
+    this.countries = this.countryService.getContries();
   }
 
   private getGuests() {

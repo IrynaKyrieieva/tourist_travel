@@ -16,14 +16,6 @@ namespace TouristTravel.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetCountries()
-        {
-            var countries = _countryService.GetCountries();
-            return Ok(countries);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
         public IHttpActionResult GetTours()
         {
             var tours = _tourService.GetTours();
@@ -56,7 +48,7 @@ namespace TouristTravel.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult DeleteFromFavourite(int accountId, int tourId)
+        public IHttpActionResult DeleteFromFavorite(int accountId, int tourId)
         {
             _tourService.DeleteTourToWishList(accountId, tourId);
             return Ok();

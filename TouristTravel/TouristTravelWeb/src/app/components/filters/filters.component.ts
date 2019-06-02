@@ -3,6 +3,7 @@ import { TourService } from '../../services/tour.service';
 import { NotificationService } from '../../services/notification.service';
 import { Country } from '../../models/country';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-filters',
@@ -18,16 +19,13 @@ export class FiltersComponent {
   arrivalDate: Date = null;
   departureDate: Date = null;
 
-  constructor(private tourService: TourService,
+  constructor(private countryService: CountryService,
               private notificationService: NotificationService) {
     this.getContries();
   }
 
   private getContries(): any {
-    this.tourService.getContriesForTrip().subscribe(
-      countries => this.countries = countries,
-      err => this.notificationService.error(err)
-    );
+    this.countries = this.countryService.getContries();
   }
 
   onArrivalValueChange(date: Date): void {

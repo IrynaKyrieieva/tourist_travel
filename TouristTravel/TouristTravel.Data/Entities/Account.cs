@@ -24,10 +24,21 @@ namespace TouristTravel.Data.Entities
 		[Required]
 		public string Password { get; set; }
 
-		public DateTime? DateOfSignUp { get; set; }
+        public string Gender { get; set; }
 
-		public DateTime? LastDateOfLogin { get; set; }
+        public int CountryId { get; set; }
+
+        public DateTime? Birthday { get; set; }
+
+        public DateTime? DateOfSignUp { get; set; }
+
+        public DateTime? LastDateOfLogin { get; set; }
+
 
         public ICollection<FavoriteTourToUser> FavoriteTourToAccounts { get; set; }
+
+        public ICollection<TourSale> TourSales { get; set; }
+
+        public Country Country { get; set; }
     }
 }

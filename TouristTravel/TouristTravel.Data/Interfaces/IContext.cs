@@ -10,6 +10,7 @@ namespace TouristTravel.Data.Interfaces
         DbSet<Country> Countries { get; set; }
         DbSet<FavoriteTourToUser> FavoriteTourToUsers { get; set; }
         DbSet<Tour> Tours { get; set; }
+        DbSet<TourSchedule> Schedules { get; set; }
 
         int SaveChanges();
 

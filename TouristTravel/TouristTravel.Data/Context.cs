@@ -16,5 +16,22 @@ namespace TouristTravel.Data
 		public DbSet<Country> Countries { get; set; }
 		public DbSet<FavoriteTourToUser> FavoriteTourToUsers { get; set; }
 		public DbSet<Tour> Tours { get; set; }
-	}
+        public DbSet<TourSchedule> Schedules { get; set; }
+        public DbSet<TourSale> TourSales { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FavoriteTourToUser>()
+                        .HasRequired(c => c.Tour)
+                        .WithMany()
+                        .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TourSale>()
+                        .HasRequired(c => c.Tour)
+                        .WithMany()
+                        .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
 }

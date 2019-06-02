@@ -14,7 +14,7 @@ namespace TouristTravel.Data.Entities
 
         public int CountryId { get; set; }
 
-        public ICollection<FavoriteTourToUser> FavoriteTourToAccounts { get; set; }
+        public ICollection<TourSchedule> Schedules { get; set; }
 
         public Country Country { get; set; }
     }

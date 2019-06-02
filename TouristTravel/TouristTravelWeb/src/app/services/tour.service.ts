@@ -10,19 +10,14 @@ import { AccountService } from './account.service';
 @Injectable()
 export class TourService {
   private url = environment.apiUrl + '/tour/';
-  private readonly countriesUrl = this.url + 'getCountries';
   private readonly addToFavoritesUrl = this.url + 'addToFavorites';
-  private readonly deleteToFavouriteUrl = this.url + 'deleteFromFavourite';
+  private readonly deleteToFavouriteUrl = this.url + 'deleteFromFavorite';
   private readonly getTourByIdUrl = this.url + 'getTourById';
   private readonly getWishListUrl = this.url + 'getWishList';
   private readonly getToursUrl = this.url + 'getTours';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
               private accountService: AccountService) { }
-
-  getContriesForTrip(): Observable<Country[]> {
-    return this.proxyHttpClientService.get(this.countriesUrl);
-  }
 
   getTours(): Observable<Tour[]> {
     return this.proxyHttpClientService.get(this.getToursUrl);
