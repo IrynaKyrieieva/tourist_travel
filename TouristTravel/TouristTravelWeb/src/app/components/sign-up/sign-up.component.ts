@@ -3,9 +3,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
 import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 
 import { AccountService } from '../../services/account.service';
 import { AccountSignUp } from '../../models/account-sign-up';
+import { Country } from '../../models/country';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,36 +24,39 @@ export class SignUpComponent implements OnInit {
   public isValidPassword: boolean;
   public isSignUp: boolean;
   progressRef: NgProgressRef;
+  public maxBday: Date;
+  public countries: Country[];
+  public selectedCountry: Country;
 
   constructor(private activeModal: NgbActiveModal,
               private accountService: AccountService,
               private notificationService: NotificationService,
-              private progress: NgProgress) {
+              private progress: NgProgress,
+              private countryService: CountryService) {
     this.signUpForm = new FormGroup({
-      phone: new FormControl('', [Validators.required, this.userPhoneValidator]),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
-      gender: new FormControl('', Validators.required),
-      countryId: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
       confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')])
     });
-    this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   }
 
   ngOnInit() {
     this.progressRef = this.progress.ref('progress-bar');
+    this.maxBday = new Date();
+    this.countries = this.countryService.getContries();
   }
 
   signUp(): void {
     const account: AccountSignUp = {
       firstName: this.signUpForm.value.firstName,
       lastName: this.signUpForm.value.lastName,
-      phone: this.signUpForm.value.phone,
       email: this.signUpForm.value.email,
       password: this.signUpForm.value.password,
       confirmPassword: this.signUpForm.value.confirmPassword,
+      countryId: this.selectedCountry.id,
       dateOfSignUp: null,
       lastDateOfLogin: null
     };
@@ -109,5 +115,9 @@ export class SignUpComponent implements OnInit {
       return { userName: true };
     }
     return null;
+  }
+
+  onSelect(event: TypeaheadMatch): void {
+    this.selectedCountry = event.item;
   }
 }

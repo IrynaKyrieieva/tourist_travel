@@ -19,14 +19,11 @@ namespace TouristTravel.Data.Entities
 		public string Email { get; set; }
 
 		[Required]
-		public string Phone { get; set; }
-
-		[Required]
 		public string Password { get; set; }
 
         public string Gender { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public DateTime? Birthday { get; set; }
 

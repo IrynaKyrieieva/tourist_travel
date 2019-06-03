@@ -19,8 +19,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets/logo.svg",
+              "src/assets",
+              "src/logo.png"
             ],
             "styles": [
 			        "node_modules/ngx-toastr/toastr.css",			
@@ -96,7 +97,8 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
+              "src/assets/logo.svg",
+              "src/logo.png",
               "src/assets"
             ]
           }

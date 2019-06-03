@@ -5,29 +5,25 @@ using TouristTravel.Services.Models;
 
 namespace TouristTravel.WebApi.Controllers
 {
-	public class AccountController : ApiController
+    public class AccountController : ApiController
     {
-		private readonly IAccountService _accountService;
-		private readonly ILetterService _letterService;
+        private readonly IAccountService _accountService;
+        private readonly ILetterService _letterService;
 
-		public AccountController(IAccountService accountService,
+        public AccountController(IAccountService accountService,
                                  ILetterService letterService)
-		{
-			_accountService = accountService;
+        {
+            _accountService = accountService;
             _letterService = letterService;
         }
 
-		[HttpPost]
-		[AllowAnonymous]
-		public IHttpActionResult SignUp(AccountSignUpDto account)
-		{
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult SignUp(AccountSignUpDto account)
+        {
             try
             {
                 var isSignUp = _accountService.SignUp(account);
-                if (isSignUp)
-                {
-                    _letterService.SubscribeOfNewsletter(account.Email, account.DateOfSignUp ?? DateTime.Now.Date);
-                }
 
                 return Ok(isSignUp);
             }
@@ -35,12 +31,12 @@ namespace TouristTravel.WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-		}
+        }
 
-		[HttpGet]
-		[AllowAnonymous]
-		public IHttpActionResult SignIn(string email, string password, DateTime signInDateTime)
-		{
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult SignIn(string email, string password, DateTime signInDateTime)
+        {
             try
             {
                 var account = _accountService.SignIn(email, password, signInDateTime);
@@ -53,10 +49,10 @@ namespace TouristTravel.WebApi.Controllers
             }
         }
 
-		[HttpGet]
-		[AllowAnonymous]
-		public IHttpActionResult GetAccountById(int accountId)
-		{
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetAccountById(int accountId)
+        {
             try
             {
                 var account = _accountService.GetAccount(accountId);
@@ -69,9 +65,9 @@ namespace TouristTravel.WebApi.Controllers
             }
         }
 
-		[HttpPost]
-		public IHttpActionResult UpdateAccount(AccountDto accountDto)
-		{
+        [HttpPost]
+        public IHttpActionResult UpdateAccount(AccountDto accountDto)
+        {
             try
             {
                 var account = _accountService.UpdatePersonalData(accountDto);
@@ -84,9 +80,9 @@ namespace TouristTravel.WebApi.Controllers
             }
         }
 
-		[HttpPost]
-		public IHttpActionResult UpdatePassword(ChangePasswordData passwordData)
-		{
+        [HttpPost]
+        public IHttpActionResult UpdatePassword(ChangePasswordData passwordData)
+        {
             try
             {
                 var isUpdate = _accountService.ChangePassword(passwordData);
@@ -97,6 +93,6 @@ namespace TouristTravel.WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-		}
-	}
+        }
+    }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TourService } from '../../services/tour.service';
 import { NotificationService } from '../../services/notification.service';
 import { Country } from '../../models/country';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';

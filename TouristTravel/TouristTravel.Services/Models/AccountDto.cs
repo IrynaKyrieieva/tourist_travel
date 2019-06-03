@@ -11,8 +11,12 @@ namespace TouristTravel.Services.Models
 		public string LastName { get; set; }
 
 		public string Email { get; set; }
-		
-		public string Phone { get; set; }
+
+        public string Gender { get; set; }
+
+        public int CountryId { get; set; }
+
+        public DateTime BirthdayDate { get; set; }
 
 		public DateTime? DateOfSignUp { get; set; }
 

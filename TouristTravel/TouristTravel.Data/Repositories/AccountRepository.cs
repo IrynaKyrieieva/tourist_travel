@@ -27,7 +27,6 @@ namespace TouristTravel.Data.Repositories
             if (changeAccount != null)
             {
                 changeAccount.Email = account.Email;
-                changeAccount.Phone = account.Phone;
                 changeAccount.FirstName = account.FirstName;
                 changeAccount.LastName = account.LastName;
                 Save();

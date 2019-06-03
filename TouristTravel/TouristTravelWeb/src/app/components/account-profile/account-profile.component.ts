@@ -30,6 +30,8 @@ export class AccountProfileComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
+      //birthday: new FormControl('', Validators.required),
+      //gender: new FormControl('', Validators.required),
     });
     this.phoneMask = ['+', '3', '8', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   }
@@ -55,7 +57,6 @@ export class AccountProfileComponent implements OnInit {
     this.progressRef.start();
     this.accountService.getAccount().subscribe(
       (account) => {
-        this.editForm.controls.phone.setValue(account.phone);
         this.editForm.controls.firstName.setValue(account.firstName);
         this.editForm.controls.lastName.setValue(account.lastName);
         this.editForm.controls.email.setValue(account.email);
@@ -70,7 +71,6 @@ export class AccountProfileComponent implements OnInit {
       id: this.accountService.getCookie(environment.accountIdCookie),
       firstName: this.editForm.value.firstName,
       lastName: this.editForm.value.lastName,
-      phone: this.editForm.value.phone,
       email: this.editForm.value.email
     };
     this.accountService.updateAccount(account).subscribe(
