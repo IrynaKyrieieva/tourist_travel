@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TouristTravel.Services.Models;
+using TouristTravel.Services.Services;
 
 namespace TouristTravel.Services.Interfaces
 {
@@ -12,9 +14,16 @@ namespace TouristTravel.Services.Interfaces
         List<TourDto> GetRecommendTours(int accountId);
 
         List<TourDto> GetTours();
+        List<TourDto> GetTours(int accountId);
+
+        List<TourDto> GetTours(TourFilters filters);
 
         void AddTourToWishList(int accountId, int tourId);
 
         void DeleteTourToWishList(int accountId, int tourId);
+
+        bool BuyingTour(int accountId, int tourScheduleId, DateTime date);
+
+        List<TourDto> GetPurchasedTours(int accountId);
     }
 }

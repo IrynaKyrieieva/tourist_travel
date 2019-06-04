@@ -7,9 +7,18 @@
   <div [routerLink]="['/tour', tour.id]">
       <img [src]="imageUrl" class="card-img-top">
       <div class="card-body">
-        <h5 *ngIf="tour.title" class="card-title">{{tour.title}}</h5>
-        <p  *ngIf="description" class="card-text">
-          {{description}}
+        <h5 *ngIf="tour.title" class="card-title">
+          <div class="row">
+            <div class="col-sm-6">
+                {{tour.title}}
+            </div>
+            <div class="col-sm-6 date-card">
+                {{dateIn}} - {{dateOut}}
+            </div>
+          </div>
+        </h5>
+        <p *ngIf="description" class="card-text">
+            {{description}}
         </p>
       </div>
   </div>

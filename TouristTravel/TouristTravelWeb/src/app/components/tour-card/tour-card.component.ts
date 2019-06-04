@@ -14,7 +14,10 @@ export class TourCardComponent implements OnInit, DoCheck {
   baseUrl = '../../../assets/images/tours/';
   imageUrl: string;
   description: string;
+  dateIn: string;
+  dateOut: string;
   isSignIn: boolean;
+  price: number;
   progressRef: NgProgressRef;
   @Input() tour: Tour;
 
@@ -26,6 +29,16 @@ export class TourCardComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.progressRef = this.progress.ref('progress-bar');
     this.imageUrl = this.baseUrl + this.tour.imageUrl;
+    if (this.tour.dateIn) {
+      this.dateIn = new Date(this.tour.dateIn).toLocaleDateString();
+    }
+    if (this.tour.dateOut) {
+      this.dateOut = new Date(this.tour.dateOut).toLocaleDateString();
+    }
+    if (this.tour.price) {
+      this.price = this.tour.price;
+    }
+
     if (this.tour.description) {
       this.description = this.tour.description.substring(0, 120) + '...';
     }

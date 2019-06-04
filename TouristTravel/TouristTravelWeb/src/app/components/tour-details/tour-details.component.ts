@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TourService } from '../../services/tour.service';
 import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
+import { ScrollService } from '../../services/scroll.service';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
+import { TourService } from '../../services/tour.service';
 import { NotificationService } from '../../services/notification.service';
 import { Tour } from '../../models/tour';
-import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-tour-details',
@@ -12,6 +14,8 @@ import { ScrollService } from '../../services/scroll.service';
   styleUrls: ['./tour-details.component.css']
 })
 export class TourDetailsComponent implements OnInit {
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
   progressRef: NgProgressRef;
   tour: Tour;
 
@@ -22,6 +26,7 @@ export class TourDetailsComponent implements OnInit {
               private progress: NgProgress) { }
 
   ngOnInit() {
+    this.initGallery();
     this.scrollService.AddMarginForMenu('tourDetails');
     this.progressRef = this.progress.ref('progress-bar');
     this.progressRef.start();
@@ -36,5 +41,46 @@ export class TourDetailsComponent implements OnInit {
         },
         () => this.progressRef.complete());
     });
+  }
+
+  private initGallery() {
+    this.galleryOptions = [
+      {
+        imageAutoPlay: true,
+        imageAutoPlayPauseOnHover: true,
+        imageAutoPlayInterval: 8000,
+        previewAutoPlay: true,
+        previewAutoPlayPauseOnHover: true,
+        imageInfinityMove: true,
+        previewCloseOnClick: true,
+        width: '100%'
+      },
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '400px',
+        thumbnailsColumns: 3
+      },
+      {
+        breakpoint: 500,
+        width: '100%',
+        height: '200px',
+        thumbnailsColumns: 2
+      },
+    ];
+
+    const array = ['assets/1.jpg', 'assets/3.jpg', 'assets/1.jpg', 'assets/3.jpg', 'assets/1.jpg', 'assets/3.jpg'];
+
+    this.galleryImages = [];
+    array.forEach(x => this.galleryImages.push(this.fillImageItem(x)));
+  }
+
+  private fillImageItem(url: string): any {
+    return {
+      small: url,
+      medium: url,
+      big: url,
+      description: 'TESTTTTTTTTTTTTTTTTTTTTTTTTTTT'
+    };
   }
 }

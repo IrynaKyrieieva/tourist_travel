@@ -16,7 +16,7 @@ namespace TouristTravel.Services.Models
 
         public int CountryId { get; set; }
 
-        public DateTime BirthdayDate { get; set; }
+        public DateTime Birthday { get; set; }
 
 		public DateTime? DateOfSignUp { get; set; }
 

@@ -12,6 +12,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OwlModule } from 'ngx-owl-carousel';
 import { SwiperModule } from 'angular2-useful-swiper';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -73,6 +74,7 @@ import { NewsletterService } from './services/newsletter.service';
     TextMaskModule,
     NgxSpinnerModule,
     OwlModule,
+    NgxGalleryModule,
     NgProgressModule.withConfig({
       color: '#17a2b8',
       meteor: false,

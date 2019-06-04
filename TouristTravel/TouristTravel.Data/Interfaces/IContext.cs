@@ -6,11 +6,11 @@ namespace TouristTravel.Data.Interfaces
 	public interface IContext
 	{
         DbSet<Account> Accounts { get; set; }
-        DbSet<NewsLetter> NewsLetters { get; set; }
         DbSet<Country> Countries { get; set; }
         DbSet<FavoriteTourToUser> FavoriteTourToUsers { get; set; }
         DbSet<Tour> Tours { get; set; }
         DbSet<TourSchedule> Schedules { get; set; }
+        DbSet<TourSale> TourSales { get; set; }
 
         int SaveChanges();
 

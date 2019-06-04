@@ -110,13 +110,6 @@ export class SignUpComponent implements OnInit {
     return true;
   }
 
-  private userPhoneValidator(control: FormControl): { [s: string]: boolean } {
-    if (control.value.indexOf('_') !== -1) {
-      return { userName: true };
-    }
-    return null;
-  }
-
   onSelect(event: TypeaheadMatch): void {
     this.selectedCountry = event.item;
   }

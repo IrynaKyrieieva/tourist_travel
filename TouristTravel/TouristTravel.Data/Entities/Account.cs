@@ -23,7 +23,7 @@ namespace TouristTravel.Data.Entities
 
         public string Gender { get; set; }
 
-        public int? CountryId { get; set; }
+        public int CountryId { get; set; }
 
         public DateTime? Birthday { get; set; }
 

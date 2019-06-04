@@ -4,6 +4,7 @@ import { ProxyHttpClientService } from './proxy-http-client.service';
 import { Observable } from '../../../node_modules/rxjs';
 import { Country } from '../models/country';
 import { NotificationService } from './notification.service';
+import { compileDirective } from '../../../node_modules/@angular/core/src/render3/jit/directive';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,13 @@ export class CountryService {
     }
 
     return countries;
+  }
+
+  getById(id: number): Country {
+    let countries = this.getContries();
+    var country = countries.filter(x => x.id == id);
+
+    return country[0];
   }
 
   private getCountriesFromLocalStorage() {

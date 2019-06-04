@@ -4,4 +4,10 @@ export interface Tour {
     description?: string;
     imageUrl: string;
     isFavorite?: boolean;
+    adultCount?: number;
+    childrenCount?: number;
+    price?: number;
+    dateIn?: Date;
+    dateOut?: Date;
+    country?: string;
 }

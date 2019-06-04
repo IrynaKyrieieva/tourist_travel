@@ -1,4 +1,6 @@
-﻿namespace TouristTravel.Services.Models
+﻿using System;
+
+namespace TouristTravel.Services.Models
 {
     public class TourDto
     {
@@ -11,5 +13,17 @@
         public bool IsFavorite { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public string Country { get; set; }
+
+        public DateTime DateIn { get; set; }
+
+        public DateTime DateOut { get; set; }
+
+        public double Price { get; set; }
+
+        public int AdultCount { get; set; }
+
+        public int ChildrenCount { get; set; }
     }
 }

@@ -1,24 +1,32 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using TouristTravel.Services.Interfaces;
+using TouristTravel.Services.Services;
 
 namespace TouristTravel.WebApi.Controllers
 {
     public class TourController : ApiController
     {
         private readonly ITourService _tourService;
-        private readonly ICountryService _countryService;
 
-        public TourController(ITourService tourService, ICountryService countryService)
+        public TourController(ITourService tourService)
         {
             _tourService = tourService;
-            _countryService = countryService;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetTours()
+        public IHttpActionResult GetTours(int accountId)
         {
-            var tours = _tourService.GetTours();
+            var tours = _tourService.GetTours(accountId);
+            return Ok(tours);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetToursFilters(TourFilters filters)
+        {
+            var tours = _tourService.GetTours(filters);
             return Ok(tours);
         }
 
@@ -52,6 +60,24 @@ namespace TouristTravel.WebApi.Controllers
         {
             _tourService.DeleteTourToWishList(accountId, tourId);
             return Ok();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult BuyTour(int tourScheduleId, int accountId, DateTime date)
+        {
+            var isBuying = _tourService.BuyingTour(accountId, tourScheduleId, date);
+
+            return Ok(isBuying);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetPurchasedTours(int accountId)
+        {
+            var tours = _tourService.GetPurchasedTours(accountId);
+
+            return Ok(tours);
         }
     }
 }

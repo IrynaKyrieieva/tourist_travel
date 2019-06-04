@@ -15,9 +15,11 @@ namespace TouristTravel.Data.Repositories
 
         public List<FavoriteTourToUser> GetFavoriteTourByAccountId(int accountId)
         {
-            return Db.FavoriteTourToUsers.Where(x => x.AccountId == accountId)
-                .Include(x => x.Tour)
-                .ToList();
+            return Db.FavoriteTourToUsers
+                     .Where(x => x.AccountId == accountId)
+                     .Include(x => x.TourSchedule)
+                     .Include(x=>x.TourSchedule.Tour)
+                     .Include(x => x.TourSchedule.Tour.Country).ToList();
         }
     }
 }

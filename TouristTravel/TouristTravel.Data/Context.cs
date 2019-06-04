@@ -12,7 +12,6 @@ namespace TouristTravel.Data
 		}
 
 		public DbSet<Account> Accounts { get; set; }
-		public DbSet<NewsLetter> NewsLetters { get; set; }
 		public DbSet<Country> Countries { get; set; }
 		public DbSet<FavoriteTourToUser> FavoriteTourToUsers { get; set; }
 		public DbSet<Tour> Tours { get; set; }
@@ -22,12 +21,12 @@ namespace TouristTravel.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FavoriteTourToUser>()
-                        .HasRequired(c => c.Tour)
+                        .HasRequired(c => c.TourSchedule)
                         .WithMany()
                         .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TourSale>()
-                        .HasRequired(c => c.Tour)
+                        .HasRequired(c => c.TourSchedule)
                         .WithMany()
                         .WillCascadeOnDelete(false);
 

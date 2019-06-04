@@ -20,7 +20,8 @@ export class TourService {
               private accountService: AccountService) { }
 
   getTours(): Observable<Tour[]> {
-    return this.proxyHttpClientService.get(this.getToursUrl);
+    const params = new HttpParams().set('accountId', this.accountService.getCookie(environment.accountIdCookie));
+    return this.proxyHttpClientService.get(this.getToursUrl, params);
   }
 
   addToFavorite(tourId: number): Observable<boolean> {

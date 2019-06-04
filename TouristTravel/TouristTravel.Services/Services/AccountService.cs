@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using AutoMapper;
 using TouristTravel.Data.Entities;
 using TouristTravel.Data.Interfaces;
+using TouristTravel.Data.Repositories;
 using TouristTravel.Services.Interfaces;
 using TouristTravel.Services.Models;
 
@@ -13,10 +15,13 @@ namespace TouristTravel.Services.Services
 	public class AccountService : IAccountService
 	{
 		private readonly IAccountRepository _accountRepository;
+        private readonly CommonRepository<Country> _countryRepository;
 
-		public AccountService(IAccountRepository accountRepository)
+
+        public AccountService(IAccountRepository accountRepository, CommonRepository<Country> countryRepository)
 		{
 			_accountRepository = accountRepository;
+            _countryRepository = countryRepository;
         }
 
 		public bool SignUp(AccountSignUpDto accountDto)
@@ -28,7 +33,8 @@ namespace TouristTravel.Services.Services
             }
 
 			account.Password = GetPasswordHash(account.Password);
-			_accountRepository.Create(account);
+            account.Birthday = null;
+            _accountRepository.Create(account);
 
 			return true;
 		}

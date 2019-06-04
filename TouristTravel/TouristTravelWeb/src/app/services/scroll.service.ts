@@ -19,7 +19,7 @@ export class ScrollService {
 
   public AddMarginForMenu(divId: string) {
     const menu = document.getElementById('menu');
-    document.getElementById(divId).style.marginTop = menu.offsetHeight + 'px';
+    document.getElementById(divId).style.marginTop = (menu.offsetHeight + 15) + 'px';
     menu.style.backgroundColor = '#121921';
   }
 }

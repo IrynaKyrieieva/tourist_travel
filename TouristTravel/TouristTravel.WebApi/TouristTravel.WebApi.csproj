@@ -190,7 +190,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
-    <Compile Include="Controllers\LetterController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

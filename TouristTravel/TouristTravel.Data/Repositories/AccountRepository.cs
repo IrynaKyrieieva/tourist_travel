@@ -29,6 +29,9 @@ namespace TouristTravel.Data.Repositories
                 changeAccount.Email = account.Email;
                 changeAccount.FirstName = account.FirstName;
                 changeAccount.LastName = account.LastName;
+                changeAccount.Birthday = account.Birthday;
+                changeAccount.Gender = account.Gender;
+                //changeAccount.CountryId = account.CountryId;
                 Save();
 
                 return true;

@@ -8,13 +8,10 @@ namespace TouristTravel.WebApi.Controllers
     public class AccountController : ApiController
     {
         private readonly IAccountService _accountService;
-        private readonly ILetterService _letterService;
 
-        public AccountController(IAccountService accountService,
-                                 ILetterService letterService)
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
-            _letterService = letterService;
         }
 
         [HttpPost]

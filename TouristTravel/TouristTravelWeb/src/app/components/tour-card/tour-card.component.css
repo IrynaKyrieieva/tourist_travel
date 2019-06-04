@@ -46,3 +46,8 @@
 .favourite.non-selected {
     color: white;
 }
+
+.date-card {
+    text-align: right;
+    font-size: 12px;
+}
