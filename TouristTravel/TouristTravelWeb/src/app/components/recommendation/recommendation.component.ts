@@ -20,7 +20,6 @@ export class RecommendationComponent implements OnInit {
   ngOnInit() {
     this.tourService.getTours().subscribe(
       (tours) => {
-        tours.forEach(x => x.imageUrl = x.id + '.jpg');
         this.tours = tours;
       });
   }

@@ -3,5 +3,7 @@ export const environment = {
   apiUrl: 'http://tourist.travel.com/api',
   accountNameCookie: 'Account',
   accountIdCookie: 'AccountId',
-  countriesInfo: 'CountriesInfo'
+  countriesInfo: 'CountriesInfo',
+  photoFormat: '.jpg',
+  photoFolder: 'assets/tours/'
 };

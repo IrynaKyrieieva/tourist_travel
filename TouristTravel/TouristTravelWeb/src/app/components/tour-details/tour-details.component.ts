@@ -7,6 +7,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { TourService } from '../../services/tour.service';
 import { NotificationService } from '../../services/notification.service';
 import { Tour } from '../../models/tour';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-tour-details',
@@ -28,7 +29,6 @@ export class TourDetailsComponent implements OnInit {
               private progress: NgProgress) { }
 
   ngOnInit() {
-    this.initGallery();
     this.scrollService.AddMarginForMenu('tourDetails');
     this.progressRef = this.progress.ref('progress-bar');
     this.progressRef.start();
@@ -38,6 +38,7 @@ export class TourDetailsComponent implements OnInit {
           this.tour = tour;
           this.dateIn = new Date(this.tour.dateIn).toDateString();
           this.dateOut = new Date(this.tour.dateOut).toDateString();
+          this.initGallery();
         },
         (err) => {
           this.notificationService.error(err);
@@ -71,18 +72,19 @@ export class TourDetailsComponent implements OnInit {
         thumbnailsColumns: 2
       },
     ];
-
-    const array = ['assets/1.jpg', 'assets/2.jpg', 'assets/3.jpg', 'assets/4.jpg', 'assets/1.jpg', 'assets/3.jpg'];
-
     this.galleryImages = [];
-    array.forEach(x => this.galleryImages.push(this.fillImageItem(x)));
+    this.galleryImages.push(this.fillImageItem(this.tour.defaultImageUrl));
+    this.tour.photos.forEach(x => this.galleryImages.push(
+      this.fillImageItem(x)
+    ));
   }
 
   private fillImageItem(url: string): any {
+    const urlPath = environment.photoFolder + this.tour.tourId + '/';
     return {
-      small: url,
-      medium: url,
-      big: url
+      small: urlPath + url,
+      medium: urlPath + url,
+      big: urlPath + url
     };
   }
 }

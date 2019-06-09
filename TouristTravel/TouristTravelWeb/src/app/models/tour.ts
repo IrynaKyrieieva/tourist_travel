@@ -1,8 +1,9 @@
 export interface Tour {
     id: number;
+    tourId: number;
     title: string;
     description?: string;
-    imageUrl: string;
+    defaultImageUrl: string;
     isFavorite?: boolean;
     adultCount?: number;
     childrenCount?: number;
@@ -10,4 +11,5 @@ export interface Tour {
     dateIn?: Date;
     dateOut?: Date;
     country?: string;
+    photos: string[];
 }

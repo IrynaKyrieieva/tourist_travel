@@ -18,7 +18,6 @@ export class ToursComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.tourService.getTours().subscribe(
       (tours) => {
-        tours.forEach(x => x.imageUrl = '1.jpg');
         this.tours = tours;
       },
       (err) => this.notificationService.error(err)

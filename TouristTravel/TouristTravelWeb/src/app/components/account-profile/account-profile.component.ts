@@ -89,7 +89,6 @@ export class AccountProfileComponent implements OnInit {
       birthday: new Date(this.editForm.value.birthday).toLocaleString('en-US'),
       gender: this.editForm.value.gender
     };
-    this.progressRef.start();
     this.accountService.updateAccount(account).subscribe(
       (isUpdate) => {
         if (isUpdate) {
@@ -100,8 +99,7 @@ export class AccountProfileComponent implements OnInit {
           this.notificationService.defaultError();
         }
       },
-      (err) => this.notificationService.error(err),
-      () => this.progressRef.complete());
+      (err) => this.notificationService.error(err));
   }
 
   cancel(): void {

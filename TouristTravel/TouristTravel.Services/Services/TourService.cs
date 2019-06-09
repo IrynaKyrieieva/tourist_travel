@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TouristTravel.Data.Entities;
 using TouristTravel.Data.Interfaces;
 using TouristTravel.Services.Interfaces;
@@ -28,8 +29,10 @@ namespace TouristTravel.Services.Services
         public TourDto GetTourById(int tourId)
         {
             var tour = _tourScheduleRepository.GetFullInfoById(tourId);
+            var tourDto = ConvertToTourDto(tour);
+            tourDto.Photos = tour.Tour.TourPhotos.Select(x => x.Url).ToList();
 
-            return ConvertToTourDto(tour);
+            return tourDto;
         }
 
         public List<TourDto> GetWishList(int accountId)
@@ -127,6 +130,7 @@ namespace TouristTravel.Services.Services
             return new TourDto
             {
                 Id = tour.Id,
+                TourId = tour.TourId,
                 Description = tour.Tour.Description,
                 Title = tour.Tour.Title,
                 Country = tour.Tour.Country.Name,
@@ -134,7 +138,8 @@ namespace TouristTravel.Services.Services
                 ChildrenCount = tour.ChildrenCount,
                 DateIn = tour.DateIn,
                 DateOut = tour.DateOut,
-                Price = tour.Price
+                Price = tour.Price,
+                DefaultImageUrl = tour.Tour.DefaultImageUrl
             };
         }
     }

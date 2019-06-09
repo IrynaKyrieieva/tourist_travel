@@ -23,6 +23,7 @@ namespace TouristTravel.Data.Repositories
         {
             return Db.Schedules.Where(x => x.Id == id)
                      .Include(x => x.Tour)
+                     .Include(x => x.Tour.TourPhotos)
                      .Include(x => x.Tour.Country).FirstOrDefault();
         }
     }

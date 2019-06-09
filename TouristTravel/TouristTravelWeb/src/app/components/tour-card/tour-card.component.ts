@@ -11,7 +11,7 @@ import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
   styleUrls: ['./tour-card.component.css']
 })
 export class TourCardComponent implements OnInit, DoCheck {
-  baseUrl = '../../../assets/images/tours/';
+  baseUrl = '../../../assets/tours/';
   imageUrl: string;
   description: string;
   dateIn: string;
@@ -28,7 +28,7 @@ export class TourCardComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.progressRef = this.progress.ref('progress-bar');
-    this.imageUrl = this.baseUrl + this.tour.imageUrl;
+    this.imageUrl = this.baseUrl + this.tour.tourId + '/' + this.tour.defaultImageUrl;
     if (this.tour.dateIn) {
       this.dateIn = new Date(this.tour.dateIn).toLocaleDateString();
     }

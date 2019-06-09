@@ -12,12 +12,12 @@
         </div>
         <div class="row">
           <div class="col-md-6"> <b>Adults: </b>{{tour.adultCount}} people</div>
-          <div class="col-md-6" *ngIf="tour.childrenCount !== 0"><b>Child: </b>{{tour.childrenCount}} people</div>
+          <div class="col-md-6"><b>Child: </b>{{tour.childrenCount}} people</div>
         </div>
         <br/>
         <div class="row">
           <div class="col-md-5"></div>
-          <div style="font-size: 20px" class="col-md-3">
+          <div style="font-size: 20px" class="col-md-3 d-flex justify-content-end">
             {{tour.price}} $
           </div>
           <div class="col-md-4">

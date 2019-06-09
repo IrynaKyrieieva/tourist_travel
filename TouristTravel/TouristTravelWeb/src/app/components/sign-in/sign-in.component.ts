@@ -35,7 +35,6 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-    this.progressRef.start();
     this.accountService.signIn(this.signInForm.value.email, this.signInForm.value.password).subscribe(
       (account) => {
         if (account.id !== 0) {
@@ -43,7 +42,6 @@ export class SignInComponent implements OnInit {
           this.accountService.saveToCookie(environment.accountIdCookie, account.id);
           this.accountService.saveToCookie(environment.accountNameCookie, account.firstName);
           this.notificationService.success('Successful sign in');
-          this.progressRef.complete();
           this.cancel();
         } else {
           this.isErrorSignIn = true;

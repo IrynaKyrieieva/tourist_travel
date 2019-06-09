@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TouristTravel.Services.Models
 {
@@ -6,13 +7,15 @@ namespace TouristTravel.Services.Models
     {
         public int Id { get; set; }
 
+        public int TourId { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
 
         public bool IsFavorite { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string DefaultImageUrl { get; set; }
 
         public string Country { get; set; }
 
@@ -25,5 +28,7 @@ namespace TouristTravel.Services.Models
         public int AdultCount { get; set; }
 
         public int ChildrenCount { get; set; }
+
+        public List<string> Photos { get; set; }
     }
 }
