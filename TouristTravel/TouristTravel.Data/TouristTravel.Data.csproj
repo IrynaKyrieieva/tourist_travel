@@ -51,6 +51,7 @@
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\FavoriteTourToUser.cs" />
+    <Compile Include="Entities\TourPhoto.cs" />
     <Compile Include="Entities\TourSchedule.cs" />
     <Compile Include="Entities\Tour.cs" />
     <Compile Include="Entities\TourSale.cs" />

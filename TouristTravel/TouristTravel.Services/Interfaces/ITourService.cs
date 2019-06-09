@@ -14,6 +14,7 @@ namespace TouristTravel.Services.Interfaces
         List<TourDto> GetRecommendTours(int accountId);
 
         List<TourDto> GetTours();
+
         List<TourDto> GetTours(int accountId);
 
         List<TourDto> GetTours(TourFilters filters);

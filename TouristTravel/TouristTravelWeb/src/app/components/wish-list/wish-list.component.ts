@@ -25,7 +25,7 @@ export class WishListComponent implements OnInit {
     this.progressRef.start();
     this.tourService.getWishList().subscribe(
       (tours) => {
-        tours.forEach(x => x.imageUrl = '1.jpg');
+        tours.forEach(x => x.imageUrl =  x.id + '.jpg');
         this.tours = tours;
       },
       (err) => this.notificationService.error(err),

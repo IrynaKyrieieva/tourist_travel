@@ -18,6 +18,8 @@ export class TourDetailsComponent implements OnInit {
   galleryImages: NgxGalleryImage[];
   progressRef: NgProgressRef;
   tour: Tour;
+  dateOut: string;
+  dateIn: string;
 
   constructor(private route: ActivatedRoute,
               private tourService: TourService,
@@ -34,7 +36,8 @@ export class TourDetailsComponent implements OnInit {
       this.tourService.getTourById(params.id).subscribe(
         (tour) => {
           this.tour = tour;
-          alert(this.tour.description);
+          this.dateIn = new Date(this.tour.dateIn).toDateString();
+          this.dateOut = new Date(this.tour.dateOut).toDateString();
         },
         (err) => {
           this.notificationService.error(err);
@@ -69,7 +72,7 @@ export class TourDetailsComponent implements OnInit {
       },
     ];
 
-    const array = ['assets/1.jpg', 'assets/3.jpg', 'assets/1.jpg', 'assets/3.jpg', 'assets/1.jpg', 'assets/3.jpg'];
+    const array = ['assets/1.jpg', 'assets/2.jpg', 'assets/3.jpg', 'assets/4.jpg', 'assets/1.jpg', 'assets/3.jpg'];
 
     this.galleryImages = [];
     array.forEach(x => this.galleryImages.push(this.fillImageItem(x)));
@@ -79,8 +82,7 @@ export class TourDetailsComponent implements OnInit {
     return {
       small: url,
       medium: url,
-      big: url,
-      description: 'TESTTTTTTTTTTTTTTTTTTTTTTTTTTT'
+      big: url
     };
   }
 }

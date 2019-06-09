@@ -12,9 +12,13 @@ namespace TouristTravel.Data.Entities
 
         public string Description { get; set; }
 
+        public string DefaultImageUrl { get; set; }
+
         public int CountryId { get; set; }
 
         public ICollection<TourSchedule> Schedules { get; set; }
+
+        public ICollection<TourPhoto> TourPhotos { get; set; }
 
         public Country Country { get; set; }
     }

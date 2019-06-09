@@ -1,7 +1,30 @@
 <div id = 'tourDetails' class="details">
   <div class="row">
     <div class="col-md-4">
-      TEST
+      <div class="form-group">
+        <label style="text-transform: uppercase;"><b>{{tour.title}}</b> ({{tour.country}})</label>
+        <div>
+          {{tour.description}}
+        </div>
+        <div>
+        <br/>
+         <b>Trip dates:</b> {{dateIn}} - {{dateOut}} 
+        </div>
+        <div class="row">
+          <div class="col-md-6"> <b>Adults: </b>{{tour.adultCount}} people</div>
+          <div class="col-md-6" *ngIf="tour.childrenCount !== 0"><b>Child: </b>{{tour.childrenCount}} people</div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-5"></div>
+          <div style="font-size: 20px" class="col-md-3">
+            {{tour.price}} $
+          </div>
+          <div class="col-md-4">
+              <button type="button" class="btn btn-info btn-block">Buy</button>
+            </div>
+        </div>
+      </div>
     </div>
     <div class="col-md-8">
       <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>

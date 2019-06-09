@@ -57,7 +57,7 @@ namespace TouristTravel.Services.Services
             throw new NotImplementedException();
         }
 
-        public List<TourDto> GetTours(int accountId = 0)
+        public List<TourDto> GetTours(int accountId)
         {
             var favoriteTours = accountId != 0
                 ? _favoriteToUserRepository.GetFavoriteTourByAccountId(accountId)

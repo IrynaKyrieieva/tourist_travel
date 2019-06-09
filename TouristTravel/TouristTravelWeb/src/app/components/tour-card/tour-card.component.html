@@ -9,17 +9,30 @@
       <div class="card-body">
         <h5 *ngIf="tour.title" class="card-title">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                 {{tour.title}}
             </div>
-            <div class="col-sm-6 date-card">
-                {{dateIn}} - {{dateOut}}
+            <div class="col-sm-5 date-card">
+              <div class="row">
+                  {{dateIn}} - {{dateOut}}
+              </div>
+              <div class="row">
+                  Adult {{tour.adultCount}} Children {{tour.childrenCount}}
+            </div>  
+              <div class="row">
+                  {{tour.country}}
+              </div>                
             </div>
           </div>
         </h5>
-        <p *ngIf="description" class="card-text">
-            {{description}}
-        </p>
+        <div *ngIf="description" class="card-text row">
+          <div class="col-md-9">
+              {{description}}
+          </div>
+          <div class="col-md-3 price">
+              {{price}} $
+          </div>
+        </div>
       </div>
   </div>
 </div>

@@ -20,7 +20,13 @@ export class TourService {
               private accountService: AccountService) { }
 
   getTours(): Observable<Tour[]> {
-    const params = new HttpParams().set('accountId', this.accountService.getCookie(environment.accountIdCookie));
+    let params = new HttpParams();
+    if (this.accountService.checkCookie(environment.accountIdCookie)) {
+      params = new HttpParams().set('accountId', this.accountService.getCookie(environment.accountIdCookie));
+    } else {
+      params = new HttpParams().set('accountId', '0');
+    }
+
     return this.proxyHttpClientService.get(this.getToursUrl, params);
   }
 

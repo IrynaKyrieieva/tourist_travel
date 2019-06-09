@@ -40,7 +40,7 @@ export class TourCardComponent implements OnInit, DoCheck {
     }
 
     if (this.tour.description) {
-      this.description = this.tour.description.substring(0, 120) + '...';
+      this.description = this.tour.description.substring(0, 60) + '...';
     }
   }
 
