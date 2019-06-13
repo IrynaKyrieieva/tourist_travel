@@ -1,7 +1,7 @@
 <div class="row" id = "tours">
   <div class="col-lg-3">
-      <div class="filters" id = "filters">
-        <app-filters></app-filters>
+      <div class="filters" id="filters">
+        <app-filters (onFilterChanged)="searchTours($event)"></app-filters>
       </div>
   </div>
   <div class="col-lg-9">

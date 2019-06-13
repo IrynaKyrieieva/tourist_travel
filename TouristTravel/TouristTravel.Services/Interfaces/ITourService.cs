@@ -17,7 +17,7 @@ namespace TouristTravel.Services.Interfaces
 
         List<TourDto> GetTours(int accountId);
 
-        List<TourDto> GetTours(TourFilters filters);
+        List<TourDto> GetTours(Filters filters);
 
         void AddTourToWishList(int accountId, int tourId);
 
@@ -26,5 +26,7 @@ namespace TouristTravel.Services.Interfaces
         bool BuyingTour(int accountId, int tourScheduleId, DateTime date);
 
         List<TourDto> GetPurchasedTours(int accountId);
+
+        double GetMaxPrice();
     }
 }

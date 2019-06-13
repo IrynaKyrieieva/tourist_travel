@@ -60,7 +60,6 @@ export class SignUpComponent implements OnInit {
       dateOfSignUp: null,
       lastDateOfLogin: null
     };
-    this.progressRef.start();
     this.accountService.signUp(account).subscribe(
       (isSignUp) => {
         if (isSignUp) {
@@ -70,8 +69,7 @@ export class SignUpComponent implements OnInit {
           this.notificationService.error('User with this e-mail is already exsist');
         }
       },
-      (err) => this.notificationService.error(err),
-      () => this.progressRef.complete());
+      (err) => this.notificationService.error(err));
   }
 
   cancel(): void {

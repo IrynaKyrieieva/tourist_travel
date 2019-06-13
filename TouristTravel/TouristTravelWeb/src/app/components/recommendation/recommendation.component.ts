@@ -20,7 +20,8 @@ export class RecommendationComponent implements OnInit {
   ngOnInit() {
     this.tourService.getTours().subscribe(
       (tours) => {
-        this.tours = tours;
+        this.tours = tours.filter(x => x.id == 8 || x.id == 1004 || x.id==9 || x.id == 1014);
+
       });
   }
 

@@ -13,7 +13,7 @@
       <div class="form-group">
         <label><b>Arrival date</b></label>
         <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker
-          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY', containerClass: 'theme-turquoise' }"
           [minDate]="minDate"
           [(ngModel)]="arrivalDate"
           (bsValueChange)="onArrivalValueChange($event)">
@@ -21,7 +21,7 @@
       <div class="form-group">
         <label><b>Departure date</b></label>
         <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker
-          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-turquoise' }"
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY', containerClass: 'theme-turquoise' }"
           [minDate]="arrivalDate"
           [(ngModel)]="departureDate"
           (bsValueChange)="onDepartureValueChange($event)">
@@ -33,7 +33,7 @@
               <div class="input-group-prepend">
                 <button class="btn btn-info" (click)="removeAdult()">-</button>
               </div>
-              <input type="text" class="form-control">
+              <input type="text" [(ngModel)]="adult" class="form-control">
               <div class="input-group-append">
                 <button class="btn btn-info" (click)="addAdult()">+</button>
               </div>
@@ -43,11 +43,11 @@
             <label>Children</label>
             <div class="input-group">
               <div class="input-group-prepend">
-                <button class="btn btn-info" (click)="removeChild()">-</button>
+                <button class="btn btn-info" (click)="removeChildren()">-</button>
               </div>
-              <input type="text" class="form-control">
+              <input type="text" [(ngModel)]="children" class="form-control">
               <div class="input-group-append">
-                <button class="btn btn-info" (click)="addChild()">+</button>
+                <button class="btn btn-info" (click)="addChildren()">+</button>
               </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="row ">
           <div class="col-sm-5">
             <div class="input-group">
-              <input type="text" class="form-control"/>
+              <input type="text" [(ngModel)]="minPrice" class="form-control"/>
               <div class="input-group-append">
                 <span class="input-group-text">$</span>
               </div>
@@ -68,7 +68,7 @@
           </div>
           <div class="col-sm-5">
             <div class="input-group">
-              <input type="text" class="form-control"/>
+              <input type="text" [(ngModel)]="maxPrice" class="form-control"/>
               <div class="input-group-append">
                 <span class="input-group-text">$</span>
               </div>
@@ -77,7 +77,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-info btn-block">Search</button>
+        <button type="submit" (click)="searchTours()" class="btn btn-info btn-block">Search</button>
       </div>
   </div>
 </aside>

@@ -21,6 +21,7 @@ export class CountryService {
     if (!countries) {
       this.proxyHttpClientService.get(this.countriesUrl).subscribe(
         (countriesInfo) => {
+          countriesInfo.unshift({id: 0, name: 'All Countries'});
           localStorage.setItem(environment.countriesInfo, JSON.stringify(countriesInfo));
           countries = this.getCountriesFromLocalStorage();
         },
@@ -32,8 +33,7 @@ export class CountryService {
   }
 
   getById(id: number): Country {
-    let countries = this.getContries();
-    var country = countries.filter(x => x.id == id);
+    let country = this.getContries().filter(x => x.id == id);
 
     return country[0];
   }
@@ -43,6 +43,7 @@ export class CountryService {
     if (countries) {
       return JSON.parse(countries);
     }
+
     return null;
   }
 }

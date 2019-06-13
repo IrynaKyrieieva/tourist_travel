@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Output } from '@angular/core';
 import { Tour } from '../../models/tour';
 import {TourService} from '../../services/tour.service';
 import { NotificationService } from '../../services/notification.service';
+import { Filters } from '../../models/filters';
 
 @Component({
   selector: 'app-tours',
@@ -13,6 +14,16 @@ export class ToursComponent implements OnInit, AfterViewInit {
 
   constructor(private tourService: TourService,
               private notificationService: NotificationService) {
+  }
+
+  searchTours(filter: any) {
+    this.tourService.getToursByFilters(filter).subscribe(
+      (tours) => {
+        this.tours = tours;
+      },
+      (err) => this.notificationService.error(err)
+    );
+    console.log(filter);
   }
 
   ngOnInit() {

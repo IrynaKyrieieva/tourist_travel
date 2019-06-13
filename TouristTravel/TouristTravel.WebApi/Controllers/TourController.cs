@@ -22,9 +22,9 @@ namespace TouristTravel.WebApi.Controllers
             return Ok(tours);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
-        public IHttpActionResult GetToursFilters(TourFilters filters)
+        public IHttpActionResult GetToursByFilter(Filters filters)
         {
             var tours = _tourService.GetTours(filters);
             return Ok(tours);
@@ -60,6 +60,13 @@ namespace TouristTravel.WebApi.Controllers
         {
             _tourService.DeleteTourToWishList(accountId, tourId);
             return Ok();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetMaxPrice()
+        {
+            return Ok(_tourService.GetMaxPrice());
         }
 
         [HttpGet]

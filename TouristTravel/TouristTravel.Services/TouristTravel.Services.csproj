@@ -60,7 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CountryService.cs" />
-    <Compile Include="Services\TourFilters.cs" />
+    <Compile Include="Services\Filters.cs" />
     <Compile Include="Services\TourService.cs" />
   </ItemGroup>
   <ItemGroup>

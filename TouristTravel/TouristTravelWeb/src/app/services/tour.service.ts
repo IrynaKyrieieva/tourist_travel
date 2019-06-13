@@ -6,6 +6,7 @@ import { HttpParams } from '@angular/common/http';
 import { Tour } from '../models/tour';
 import { Country } from '../models/country';
 import { AccountService } from './account.service';
+import { Filters } from '../models/filters';
 
 @Injectable()
 export class TourService {
@@ -15,6 +16,8 @@ export class TourService {
   private readonly getTourByIdUrl = this.url + 'getTourById';
   private readonly getWishListUrl = this.url + 'getWishList';
   private readonly getToursUrl = this.url + 'getTours';
+  private readonly getMaxPrice = this.url + 'getMaxPrice';
+  private readonly getToursByFiltersUrl = this.url + 'getToursByFilter';
 
   constructor(private proxyHttpClientService: ProxyHttpClientService,
               private accountService: AccountService) { }
@@ -28,6 +31,21 @@ export class TourService {
     }
 
     return this.proxyHttpClientService.get(this.getToursUrl, params);
+  }
+
+  getToursByFilters(filters: Filters): Observable<Tour[]> {
+    filters.accountId = this.accountService.checkCookie(environment.accountIdCookie)
+      ? this.accountService.getCookie(environment.accountIdCookie)
+      : 0;
+
+    let params = new HttpParams().set('filters', JSON.stringify(filters));
+
+    return this.proxyHttpClientService.postJson(this.getToursByFiltersUrl, filters);
+  }
+
+
+  maxPrice(): Observable<number> {
+    return this.proxyHttpClientService.get(this.getMaxPrice);
   }
 
   addToFavorite(tourId: number): Observable<boolean> {

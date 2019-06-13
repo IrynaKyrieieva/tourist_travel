@@ -78,9 +78,25 @@ namespace TouristTravel.Services.Services
             return toursDto;
         }
 
-        public List<TourDto> GetTours(TourFilters filters)
+        public List<TourDto> GetTours(Filters filters)
         {
-            throw new System.NotImplementedException();
+            var favoriteTours = filters.AccountId != 0
+                ? _favoriteToUserRepository.GetFavoriteTourByAccountId(filters.AccountId)
+                : new List<FavoriteTourToUser>();
+
+            var toursDto = new List<TourDto>();
+            var tours = _tourScheduleRepository.GetAllSchedules().Where(x => 
+                filters.CountryId == x.Tour.CountryId &&
+                filters.MinPrice < x.Price && filters.MaxPrice> x.Price
+                && filters.Adult == x.AdultCount && filters.Children == x.ChildrenCount);
+            foreach (var tour in tours)
+            {
+                var item = ConvertToTourDto(tour);
+                item.IsFavorite = favoriteTours.Exists(x => x.TourScheduleId == tour.Id);
+                toursDto.Add(item);
+            }
+
+            return toursDto;
         }
 
         public void AddTourToWishList(int accountId, int tourId)
@@ -123,6 +139,11 @@ namespace TouristTravel.Services.Services
         public List<TourDto> GetPurchasedTours(int accountId)
         {
             return new List<TourDto>();
+        }
+
+        public double GetMaxPrice()
+        {
+            return GetTours(0).Max(x => x.Price);
         }
 
         private TourDto ConvertToTourDto(TourSchedule tour)
